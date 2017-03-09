@@ -1,0 +1,82 @@
+
+.container{
+     height: 500px;
+}
+
+.header h3
+{
+    color: black; 
+    text-align: center;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    color: #2c2c2c;
+    background-color: white;
+    letter-spacing: .05em;
+    text-shadow: 
+      4px 4px 0px #ece8e8;
+}
+
+hr.style17 { 
+  border-top: 1px solid rgb(138, 36, 50); 
+} 
+hr.style17:after { 
+  text-align: left;
+  //content: 'UASLP';
+  display: inline-block; 
+  position: relative; 
+  top: -12px; 
+  left: 40px; 
+  padding: 0 3px; 
+  background: #f0f0f0; 
+  color: #8c8b8b; 
+  font-size: 18px; 
+}
+
+.formContent
+{
+    width: 80%;
+    border: 1px solid #c8c5c5;
+    margin: auto;
+    margin-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.mainContainer
+{
+     width:80%; 
+     margin:0px auto; 
+     margin-bottom: 20px;
+    border:1px solid black;
+    margin-bottom: 100px;
+}
+
+.infoRep{
+   // padding-left: 10px;
+}
+
+.division{
+    border-top: 1px solid rgb(138, 36, 50); 
+}
+
+.desc{
+    height: 500px;
+}
+
+
+.tituloSOS
+{
+	text-align: center;
+	color: black;
+	font-size: 30px;
+	font-family: fantasy;
+}
+
+.textA
+{
+    resize: none;
+}

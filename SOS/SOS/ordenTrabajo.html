@@ -1,0 +1,79 @@
+<br>
+   <!--<div class="container">-->
+    <div class="orden">
+        <!--Information about the SOS-->
+        <form name="myForm" ng-submit="">
+            <div class="sosInformation">
+                <div class="header">
+                    <div class="header row">
+                        <div class="col-md-12">
+                            <h3>ORDEN DE TRABAJO</h3>
+                            <hr class="style16">
+                        </div>
+                    </div>
+                </div>
+                <div class="informationSection">
+                    <div class="inforSec row">
+                        <div class="col-md-12">
+                            ID de SOS: {{idSOS}}
+                        </div>
+                        <div class="col-md-4">
+                            Fecha:
+                            <input  class="form-control" type="date" ng-model="fecha" required>
+                        </div>
+                        <div class="col-md-3">
+                            Hora:
+                            <input class="form-control col-lg-2"type="time" ng-model="hora1" required>
+                        </div>
+                        <div class="col-md-5">
+                          Operador:
+                          <select ng-model="operador" ng-options="e as e.nombreEmpleado for e in operador track by e.idEmpleado" class="form-control">
+                                    <option value="">--Elige--</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="informantSection">
+                        <div class="panel panel-default">
+                            <div class="panel-heading has-feedback">
+                                <h4 class="panel-title">Instrucción</h4>
+                                <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                            </div>
+                            <div class="panel-body">
+                                 <textarea class="form-control desc" placeholder="detalle instrucción..." ng-model="instruccion" rows="3" required></textarea>
+                            </div>
+                        </div>
+                </div>
+                
+                <div class="report">
+                    <div class="panel panel-default">
+                        <div class="panel-heading has-feedback">
+                            <h4 class="panel-title">Reporte</h4>
+                            <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                        </div>
+                        <div class="panel-body">
+                            <h5>Hora:</h5>
+                            <input type="time" ng-model="hora2" required>
+                            <br>
+                            <br>
+                            <textarea class="form-control desc" placeholder="detalle el reporte..." ng-model="reporte" rows="3" required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><input type="button" value="Cancelar" ng-click="closeModal()" class="btn btn-default"></div>
+              <div class="col-md-6"></div>
+              <div class="col-md-2"><button type="submit" class="btn btn-default">Guardar</button></div>
+            </div>
+            {{idSOS}}
+            {{fecha}}
+            {{hora1}}
+            {{operador}}
+            {{instruccion}}
+            {{hora2}}
+            {{reporte}}
+        </form>
+    </div>
+<!--</div>-->

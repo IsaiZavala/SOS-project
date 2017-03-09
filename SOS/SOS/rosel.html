@@ -1,0 +1,198 @@
+<div id="encuesta" >
+    <div class="mainContainer ">
+
+        <div class="sosInformation" ng-show="enc.esSoli()">
+            <div class="header">
+                <div class="header row">
+                    <div class="col-md-12">
+                        <center><h1><strong>Encuesta de Satisfaccion</strong></h1></center>
+                        <!--<center><h2><strong>SSIFI</strong></h2></center>-->
+                        <hr class="style16">
+                    </div>
+                </div>
+            </div>
+
+            <form name='altaSOS333' class="form-horizontal text-left" method="post">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Objetivo</strong></h3>
+                        <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                    </div>
+                    <div class="panel-body">
+                        <label>
+                            La finalidad de esta encuesta es que usted nos comparta su opinion acerca
+                            del servicio recibido.
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Servicio General</strong></h3>
+                    </div>
+                    <div class="panel-body">
+                        <!--<h4>Elija entre las distintas opciones:</h4>-->
+
+                        <div class="col-xs-12 col-md-6">
+                            <h5> Su SOS fue atendido...</h5>
+                            <select id="sel1" value="" ng-model="enc.respuestas.r1" class="form-control input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!--<tt>singleSelect = {{enc.respuestas.r1}}</tt>-->
+                        </div>
+
+                        <div class="col-xs-12 col-md-6">
+                            <h5> Su SOS lo considero un problema...</h5>
+                            <select id="sel1" value="" ng-model="enc.respuestas.r2" class="form-control input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!--<tt>singleSelect = {{enc.respuestas.r2}}</tt>-->
+                        </div>
+
+                        <div class="col-xs-12 col-md-6">
+                            <h5> La rapidez del servicio q tal rapida fue...</h5>
+                            <select id="sel1" value="" ng-model="enc.respuestas.r3" class="form-control input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!--<tt>singleSelect = {{enc.respuestas.r3}}</tt>-->
+                        </div>
+
+                        <div class="col-xs-12 col-md-6">
+                            <h5> Como considera la solucion que se hizo a su SOS...</h5>
+                            <select id="sel1" value="" ng-model="enc.respuestas.r4" class="form-control input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!--<tt>singleSelect = {{enc.respuestas.r4}}</tt>-->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Personal de Mantenimiento</strong></h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="col-xs-12 col-md-6">
+                            <h5> El trato de la persona que me atendio fue...</h5>
+                            <select id="sel1" value="" ng-model="enc.respuestas.r5" class="form-control input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!--<tt>singleSelect = {{enc.respuestas.r5}}</tt>-->
+                        </div>
+
+                        <div class="col-xs-12 col-md-6">
+                            <h5> El desempeño q tan bueno fue ...</h5>
+                            <select id="sel1" value="" ng-model="enc.respuestas.r6" class="form-control input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!--<tt>singleSelect = {{enc.respuestas.r6}}</tt>-->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Administrativo</strong></h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="col-xs-12 col-md-6">
+                            <h5> Considera el proceso de SOS facil...</h5>
+                            <select id="sel1" value="" ng-model="enc.respuestas.r7" class="form-control input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!--<tt>singleSelect = {{enc.respuestas.r7}}</tt>-->
+                        </div>
+
+
+                        <div class="col-xs-12 col-md-6">
+                            <h5> Conoce al personal de este departamento...</h5>
+                            <select id="sel1" value="" ng-model="enc.respuestas.r8" class="form-control input-small">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!--<tt>singleSelect = {{enc.respuestas.r8}}</tt>-->
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Comentario general</strong></h3>
+                    </div>
+                    <div class="panel-body">
+                        <textarea ng-model="enc.respuestas.comentario" class="form-control desc" placeholder="aqui agregue sus comentario..." rows="3"></textarea>
+                    </div>
+                </div>
+
+                <!--<div class="row"> <input type="button"  value="guardar" ng-click="checaPack()"  /> </div>-->
+                <center><button type="button" class="btn btn-primary" ng-click="enc.guardaDATOS()">Enviar</button></center>
+
+            </form>
+
+        </div>
+        <br /><br />
+        <div id="grafica" ng-show="enc.esAdmin()">
+            <!--arriba termina la forma de encuesta, aqui comienza grafica-->
+            <br><br>
+            <!--<center><button ng-click="enc.traeDatosAGrafica()" type="button" class="btn btn-default btn-md col-sm-offset-5">Mostrar RESULTADOS</button></center>-->
+            <br>
+            <center><h1> RESULTADOS ENCUESTA DEL SOS</h1></center>
+            <br>
+            <h3>Su SOS fue atendido...</h3><br>
+            <h3>Su SOS lo considero un problema...</h3><br>
+            <h3>La rapidez del servicio q tal rapida fue...</h3> <br>
+            <h3>Como considera la solucion que se hizo a su SOS...</h3><br>
+            <h3>El trato de la persona que me atendio fue...</h3><br>
+            <h3>El desempeño q tan bueno fue ...</h3><br>
+            <h3>el proceso de SOS facil...</h3> <br>
+            <h3>Conoce al personal de este departamento...</h3><br>
+            <br>
+            <center><button ng-click="enc.traeDatosAGrafica()" type="button" class="btn btn-default btn-md col-sm-offset-5">Mostrar RESULTADOS</button></center>
+
+            <!--<button ng-click="enc.angularMuestraGRAFICA()" type="button" class="btn btn-default btn-md col-sm-offset-5">Mostrar GRAFICA</button>-->
+            <center><canvas id="mycanvas" height="400" width="400"></canvas></center>
+
+            <br>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+

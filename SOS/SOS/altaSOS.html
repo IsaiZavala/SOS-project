@@ -1,0 +1,179 @@
+<div class="mainContainer">
+    <div class="formContent text-center">
+        <div class="header">
+            <h3 class="tituloSOS">Solicitud de Orden de Servicio</h3>
+        </div>
+        <hr class="style17">
+        <div class="text-left infoRep">
+          <h4>Universidad Autonoma de San Luis Potosi</h4>
+          <h4>Facultad de Ingenieria</h4>
+          <h4>Departamento de Ingenieria</h4>
+          <h4>Jefe del Departamento: Ing. Héctor Hernández Benavente</h4>
+        <hr class="division">
+        <h4>Fecha: {{sos.fechaHoy | date}}</h4>
+        </div>
+        <hr class="division">
+        <form name='altaSOS' class="form-horizontal text-left" novalidate>
+            <!--Solicitante-->
+            <div class="panel panel-default">
+                  <div class="panel-heading has-feedback">
+                       <h4 class="panel-title">Solicitante</h4>
+                       <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                  </div>
+                  <div class="panel-body">
+                       <div class="row">
+                          <div class="col-sm-12">
+                             <div class="form-group">
+                                 <div class="row">
+                                    <div class="col-sm-2">
+                                         <label class="control-label col-sm-3">Nombre:</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                         <p class="form-control-static">{{sos.solicitante.nombre}}</p>
+                                    </div>
+                                  </div>
+                             </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Telefono:</label>
+                                <div class="col-sm-8 col-sm-offset-1">
+                                    <input onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model=sos.solicitante.telefono class="form-control" type="tel" placeholder="Telefono" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <label class="control-label col-sm-2">Celular:</label>
+                                <div class="col-sm-8 col-sm-offset-1">
+                                    <input ng-model=sos.solicitante.celular class="form-control" type="text"  placeholder="Celular" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Horario Disponible:</label><a style="text-decoration:none" data-toggle="tooltip" title="HORARIO EN EL CUAL EL TECNICO PUEDE IR A REVISAR EL PROBLEMA"> <span style="cursor:pointer;font-size:1.5em" class="glyphicon glyphicon-question-sign"></span></a><br><br>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">De:</label>
+                                <div class="col-sm-5">
+                                    <input ng-model=sos.solicitante.hora1 class="form-control" type="time" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">A:</label>
+                                <div class="col-sm-5">
+                                    <input ng-model=sos.solicitante.hora2 class="form-control" type="time" required>
+                                </div>
+                            </div>                                   
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Horario Alternativo (opcional):</label><br><br>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">De:</label>
+                                <div class="col-sm-5">
+                                    <input ng-model=sos.solicitante.hora3 class="form-control" type="time" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">A:</label>
+                                <div class="col-sm-5">
+                                    <input ng-model=sos.solicitante.hora4 class="form-control" type="time" required>
+                                </div>
+                            </div>                                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading has-feedback">
+                       <h4 class="panel-title">Código de puerta</h4>
+                       <i class="glyphicon glyphicon-tag form-control-feedback"></i>
+                </div>
+                <div class="panel-body">
+                      <div class="form-group">
+                            <div class="col-sm-8">
+                                <input ng-model="sos.seccion" ng-blur="sos.validaCodigo()" type="text" class="form-control">
+                                <span class="help-block">Introduce el codigo que esta incrito en la chapa de la puerta</span>
+                            </div>
+                            <div class="col-sm-1">
+
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular ng-show="sos.activated" lass="md-hue-2" md-diameter="20px"></md-progress-circular>
+                                    <i ng-show='sos.validacionCode.aparece && sos.validacionCode.valido' class="fa fa-check" style="font-size:36px;color:green"></i>
+                                    <i ng-show='sos.validacionCode.aparece && !sos.validacionCode.valido && sos.validacionCode.server' class="fa fa-close" style="font-size:36px;color:red"></i>
+                                    <i ng-show='sos.validacionCode.aparece && !sos.validacionCode.server' class="fa fa-exclamation-circle" style="font-size:36px;color:orange"></i>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!--Descripcion-->
+            <div class="panel panel-default">
+                  <div class="panel-heading has-feedback">
+                       <h4 class="panel-title">Descripción de SOS</h4>
+                       <i class="glyphicon glyphicon-list form-control-feedback"></i>
+                  </div>
+                  <div class="panel-body">
+                      <div class="col-sm-12">
+                        <div class="col-sm-12 form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Asunto:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model="sos.asunto" placeholder="introduce el asunto del SOS">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                             <textarea ng-model="sos.descripcion" class="textA form-control desc" placeholder="Descripcion de la incidencia" rows="10"></textarea>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+            <!--------->
+            <div class="row"> 
+                <div class="col-md-12">
+                    <button ng-click="sos.enviaSOS()" type="button" class="btn btn-default btn-md col-sm-offset-5">Enviar SOS</button>  
+                     <div layout="row" layout-sm="column" layout-align="space-around">
+                        <md-progress-circular ng-show="sos.enviaActivated" lass="md-hue-2" md-diameter="20px"></md-progress-circular>
+                     </div>
+                </div>  
+
+            </div>   
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content alert-danger">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"> Error en el servidor</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p ng-show="!reporte.res"> No se pudo conectar con el servidor.! </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+   <div class="modal fade" id="myModal3" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content alert-success">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"> Enviado </h4>
+                        </div>
+                        <div class="modal-body">
+                            <p> Se envio la peticion correctamente con numero de orden: <br /> <strong>{{sos.ordenID}}</strong></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+   </div>
+
+  

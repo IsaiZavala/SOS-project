@@ -1,0 +1,128 @@
+
+<body>
+    <div class="container">
+        <div class="panel panel-info">
+            <div class="panel-heading">Administracion </div>
+            <div class="panel-body">
+                <div ng-cloak>
+                    <md-content>
+                        <md-tabs md-dynamic-height md-border-bottom>
+                            <md-tab label="Usuarios">
+                                <md-content class="md-padding">
+                                    <h1 class="md-display-2">Usuarios</h1>
+                                    <form layout="column" class="md-padding" style="padding-top: 0;">
+                                        <div layout="row" layout-sm="column">
+                                            <md-button class="md-primary md-raised" type="button" style="margin-right: 0;" ng-click="admUser.agregaUsuario($event,null,0)"><span class="glyphicon glyphicon-plus"></span> Agregar Usuario</md-button>
+                                        </div>
+                                    </form>
+                                    <div class="table-responsive-vertical md-whiteframe-z1">
+                                        <table id="table" class="table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nombre</th>
+                                                    <th>Correo</th>
+                                                    <th>Usuario</th>
+                                                    <th>Contraseña</th>
+                                                    <th>Rol</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in admUser.usuarios track by data.idUsuario">
+                                                    <td data-title="ID">{{data.idUsuario}}</td>
+                                                    <td data-title="Nombre">{{data.NombreUsuario}}</td>
+                                                     <td data-title="Nombre">{{data.correo}}</td>
+                                                    <td data-title="Usuario">{{data.usuario}}</td>
+                                                    <td data-title="Contraseña">{{data.pass}}</td>
+                                                    <td data-title="Rol">{{data.descripcion}}</td>
+                                                    <td>
+                                                        <div class="btn-group btn-group-sm">
+                                                            <button type="button" ng-click="admUser.eliminarUsuario(data.idUsuario)" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Eliminar"> <span style="color:red" class="glyphicon glyphicon-remove"></span></button>
+                                                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Modificar" ng-click="admUser.agregaUsuario($event,data.idUsuario,0)"> <span class="glyphicon glyphicon-user"></span></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </md-content>
+<!--Empleados ------------------------------------------------------------------------------>
+                            </md-tab>
+                            <md-tab label="Empleados">
+                                <md-content class="md-padding">
+                                    <h1 class="md-display-2">Empleados</h1>
+
+                                    <form layout="column" class="md-padding" style="padding-top: 0;">
+                                        <div layout="row" layout-sm="column">
+                                            <md-button class="md-primary md-raised" type="button" style="margin-right: 0;" ng-click="admUser.agregaUsuario($event,null,1)"><span class="glyphicon glyphicon-plus"></span> Agregar Empleado</md-button>
+                                        </div>
+                                    </form>
+                                    <div class="table-responsive-vertical md-whiteframe-z1">
+                                        <table id="table" class="table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Nombre</th>
+                                                    <th>cargo </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in admUser.empleados track by data.idEmpleado">
+                                                    <td data-title="ID">{{data.idEmpleado}}</td>
+                                                    <td data-title="Nombre">{{data.nombreEmpleado}}</td>
+                                                    <td data-title="Contrasena">{{data.cargo}}</td>
+                                                    
+                                                    <td>
+                                                        <div class="btn-group btn-group-sm">
+                                                            <button type="button" ng-click="admUser.eliminarEmpleado(data.idEmpleado)" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Eliminar"> <span style="color:red" class="glyphicon glyphicon-remove"></span></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </md-content>
+                            </md-tab>
+<!--Ramo----------------------------------------------------------------------------------->
+                            <md-tab label="Ramo">
+                                <md-content class="md-padding">
+                                    <h1 class="md-display-2">Ramo</h1>
+                                    <form layout="column" class="md-padding" style="padding-top: 0;">
+                                        <div layout="row" layout-sm="column">
+                                            <md-button class="md-primary md-raised" type="button" style="margin-right: 0;" ng-click="admUser.agregaUsuario($event,null,2)"><span class="glyphicon glyphicon-plus"></span> Agregar Ramo</md-button>
+                                        </div>
+                                    </form>
+                                    <div class="table-responsive-vertical md-whiteframe-z1">
+                                        <table id="table" class="table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Ramo</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in admUser.ramos track by data.idRamo">
+                                                    <td data-title="ID">{{data.idRamo}}</td>
+                                                    <td data-title="Ramo">{{data.nombreRamo}}</td>
+
+                                                    <td>
+                                                        <div class="btn-group btn-group-sm">
+                                                            <button type="button" ng-click="admUser.eliminaRamo(data.idRamo)" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Eliminar"> <span style="color:red" class="glyphicon glyphicon-remove"></span></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</body>

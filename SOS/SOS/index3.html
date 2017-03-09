@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html ng-app="app">
+ 
+<head>
+     <meta charset="utf-8">
+    <title>SSIFI</title>
+<!--    <meta name="viewport" content="width=device-widht, user-scalable=no, initial-scale=1.0, maximum-scale1.0, minimum-  scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-route.min.js'></script>
+  <script src="//code.angularjs.org/1.2.19/i18n/angular-locale_es-es.js"></script>-->
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styleAlta.css" type="text/css">
+    <link rel="stylesheet" href="css/styleOT.css" type="text/css">
+    <script src="js/app.js"></script>
+    <script src="js/services/api.js"></script>
+    <script src="js/AltaSOS/sosController.js"></script>
+    <script src="js/services/alertas.js"></script>
+    <script src="js/ui-bootstrap-tpls-2.1.4.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/jquery.js"></script>
+    <!--buzon-->
+      <script src="js/services/Auth.js"></script> 
+    <script src="js/Buzon/buzonModule.js"></script>
+    <script src="js/Buzon/buzonController.js"></script>
+    <script src="js/Buzon/buzonDirective.js"></script>
+    <script src="js/services/dataCombos.js"></script>  
+    <!--detalle-->
+    <script src="js/Detalle/detalleController.js"></script>
+    <link rel="stylesheet" href="css/estilosDetalle.css">  
+    <link rel="stylesheet" href="css/estilosWeb.css">
+    <!--Orden de trabajo-->
+    <script src="js/OrdenTrabajo/woController.js"></script>
+    <!--login-->
+    <script src="js/login/loginCONTROLLER.js"></script>
+    <!--AdmUser-->
+    <script src="js/AdmUser/admUserController.js"></script>
+    <script src="js/AdmUser/agregarUsuario/agregarUsuarioController.js"></script>
+   
+    <!--encuesta-->
+    <script src="js/Encuesta/encuestaController.js"></script>
+    
+
+    <script src="Chart.js"></script>
+
+
+
+
+<style type="text/css">
+/*botones principales*/        
+
+    
+    nav {
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style: none;
+    flex-grow: 1;
+    text-align: center;
+}
+
+nav ul li a {
+    display: block;
+    background-color: gainsboro;
+    /*border: 1px solid gray;*/
+    font-family: Arial;
+    font-size: 1.1em;  
+    border-right: 1px solid royalblue;
+}
+    
+nav ul li a:hover {  
+                            background-color: gray;
+                            text-decoration: none;
+}     
+</style>
+    
+  
+</head>
+ 
+<!--id="body1"-->
+<body ng-controller="index as i">
+  
+      
+    <div class="container">
+          <!--<div class="mainContainer"> -->
+    
+     <div onclick="muestraPosicion(event)">
+          <img class="img-responsive center-block" src="./img/finalTaming.png" overflow="hidden" id="portada">        
+      </div> 
+  
+      <nav ng-show="i.isLogged()" ng-cloak> 
+        <ul> 
+          <li><a href="#/" >Inicio</a></li>
+          <li><a href="#alta" >SOS</a></li>
+          <li ng-show="i.esAdmin()"><a href="#admUser" >Administracion</a></li>   
+          <li><a href="#buzon" >Buzon</a></li> 
+            <!--<li><a href="#prueba">probando</a></li>-->
+          <li><a href="#diagrama">Diagrama</a></li>
+            <li><a href="#/" ng-click="i.close()">Cerrar Sesion</a></li>
+         
+        </ul> 
+          
+      </nav>
+        
+        <br>      
+ 
+    
+       
+        <!--dale-->
+        <!--<canvas id="mycanvas" height="400" width="400"></canvas>
+        <input type="button" onclick="grafica();" value="CREA GRAFICA2" />-->
+
+
+
+    <div id="main">
+    <!-- <div> -->
+  <div ng-view></div>
+       </div>     
+ 
+                
+     <div id="piePagina">            
+          <div id="contenidoPIE1">
+          <p></p>          
+          </div>     
+          <div id="contenidoPIE2">
+                <p>
+                    &nbsp;&nbsp;&nbsp;<span class="pieUASL">UASLP hola</span>
+                <br>&nbsp;&nbsp;&nbsp;<span class="pieUASLP2">Universidad Autonoma de San Luis Potosí</span>
+                <br>&nbsp;&nbsp;&nbsp;Dr. Manuel Nava No. 8, Col. Zona Universitaria Poniente, C.P. 78290, San 
+                <br>&nbsp;&nbsp;&nbsp;Luis Potosí, S. L. P., México
+                <br>&nbsp;&nbsp;&nbsp;© 2016 Todos los derechos reservados.
+                </p>
+          </div>           
+            <div id="contenidoPIE3">
+                <br>
+          <a class="text" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AHELO</a>
+          <a class="text" href="#">· AMPEI</a>
+          <a class="text" href="#">· ANUIES</a>
+          <a class="text" href="#">· ANUIES Region Noreste</a>
+          <a class="text" href="#">· CUMex</a>
+          <a class="text" href="#">· Polo Academico </a>  
+          <a class="text" href="#">· SEP </a>
+          <a class="text" href="#">· Universia</a><br><br><br><br>
+          </div>         
+      </div>   
+              
+             
+        </div>  <!--div de clase container -->       
+      <!--</div>-->
+    
+     <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+ 
+</body>
+ 
+</html>

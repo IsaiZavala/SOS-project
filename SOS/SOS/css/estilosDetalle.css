@@ -1,0 +1,245 @@
+/*body
+{
+    background-color: silver;
+    margin: 0px;
+}*/
+.newHr
+{
+    border: 1px solid #7b7474;
+}
+div panel-group{
+  transition: all linear 0.5s;
+  background-color: lightblue;
+  height: 100px;
+}
+
+.ng-show {
+  height: 0;
+}
+
+.the-legend {
+    border-style: none;
+    border-width: 0;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding-right: 0px;
+    width: 250px;
+}
+.the-fieldset {
+    border: 2px groove threedface #0b0909;
+    //border: 1px solid #8c8c8c;
+    //-webkit-box-shadow:  0px 0px 0px 0px #000;
+      //      box-shadow:  0px 0px 0px 0px #000;
+    background-color: #faf9f9;
+}
+.textDescOpc
+{
+    resize: none;
+}
+
+label{font-weight:normal !important;}
+
+.mainContainer
+{
+    background-color: white;
+    padding: 10px;
+    border:  2px solid #8c8b8b;
+    border-radius: 20px 20px 20px 20px;
+    border-radius: 10px;
+    width: 70%;
+    //width: 100%;
+}
+
+.main
+{
+    width: 60%;
+    //width: 100%;
+}
+
+.save
+{
+    background-color: #f19292;
+}
+.header h3
+{
+    color: black; 
+    text-align: center;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    color: #2c2c2c;
+    background-color: white;
+    letter-spacing: .05em;
+    text-shadow: 4px 4px 0px #ece8e8;
+}
+
+.panel-heading {background-color: rgb(27,50,87)!important;
+color:white!important;}
+
+.panel
+{
+    
+}
+
+hr.style16 { 
+  border-top: 1px solid rgb(138, 36, 50); 
+} 
+hr.style16:after { 
+  content: 'UASLP';
+  display: inline-block; 
+  position: relative; 
+  top: -12px; 
+  left: 40px; 
+  padding: 0 3px; 
+  background: #f0f0f0; 
+  color: #8c8b8b; 
+  font-size: 18px; 
+}
+
+.comments
+{
+    border: 1px solid rgb(27,50,87);
+}
+
+.input-group
+{
+    height: 10px!important;
+}
+
+select.form-control{
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.table > tbody > tr:hover {
+  background-color:#f3f1f1;
+  cursor: pointer;
+}
+
+
+.btn-primary{
+    margin-right: 10px;
+}
+
+table {border-collapse:collapse; border: none;}
+
+td 
+{
+    padding: 0;
+    margin: 0px;
+}
+
+textarea
+{
+    border: 3px double #CCCCCC;
+	width: 230px;
+	height: 60px;
+    resize: none;
+}
+
+.inp, .textAr
+{
+    border: 0;
+    padding: 0px;
+    margin: 0px;
+    background: transparent;
+    outline: none;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.check
+{
+    background-color: aqua;
+}
+
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+.check-element {
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}
+
+//pestanias
+.tabsdemoDynamicTabs md-content {
+  background-color: transparent !important; }
+  .tabsdemoDynamicTabs md-content md-tabs {
+    border: 1px solid #e1e1e1; }
+    .tabsdemoDynamicTabs md-content md-tabs md-tab-content {
+      background: #f6f6f6; }
+    .tabsdemoDynamicTabs md-content md-tabs md-tabs-wrapper {
+      background: white; }
+  .tabsdemoDynamicTabs md-content h1:first-child {
+    margin-top: 0; }
+
+.tabsdemoDynamicTabs md-input-container {
+  padding-bottom: 0; }
+
+.tabsdemoDynamicTabs .remove-tab {
+  margin-bottom: 40px; }
+
+.tabsdemoDynamicTabs .demo-tab > div > div {
+  padding: 25px;
+  box-sizing: border-box; }
+
+.tabsdemoDynamicTabs .edit-form input {
+  width: 100%; }
+
+.tabsdemoDynamicTabs md-tabs {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+
+.tabsdemoDynamicTabs md-tab[disabled] {
+  opacity: 0.5; }
+
+.tabsdemoDynamicTabs label {
+  text-align: left; }
+
+.tabsdemoDynamicTabs .long > input {
+  width: 264px; }
+
+.tabsdemoDynamicTabs .md-button.add-tab {
+  transform: translateY(5px); }
+
+..modal-header, h4, .close {
+      background-color: #5cb85c;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+
+.sosInformation .panel a
+{
+    color:white;
+}

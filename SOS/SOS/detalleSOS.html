@@ -1,0 +1,340 @@
+<br><br>
+
+<div class="">
+    <div class="mainContainer">
+        <!--Information about the SOS-->
+        <form name="myform">
+            <div class="sosInformation">
+                <div class="header">
+                    <div class="header row">
+                        <div class="col-md-12">
+                            <h3>Orden de Servicio</h3>
+                            <hr class="style16">
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="well the-fieldset">
+                    <legend class="the-legend">SOS</legend>
+
+
+                    <div class="informationSection">
+                        <div class="inforSec row">
+                            <label class="control-label col-md-12"><strong>Universidad Autónoma de San Luis potosí</strong></label>
+                            <label class="control-label col-md-12"><strong>Facultad de Ingeniería</strong></label>
+                            <label class="control-label col-md-12"><strong>Departamento de Mantenimiento y Conservación</strong></label>
+                            <label class="control-label col-md-12"><strong>Jefe del departamento: Héctor Benavente</strong></label>
+                            <label class="control-label col-md-12"><strong>Fecha de SOS:</strong> {{posts[0].fecha|date}}</label>
+                            <label class="control-label col-md-12"><strong>No. Orden de Servicio:</strong> {{posts[0].idSOS}}</label>
+                            {{usuarios}}
+                        </div>
+                    </div>
+                    <hr class="newHr">
+                    
+                    <div class="informantSection">
+                       <div class="col-sm-12 col-md-3 col-lg-offset-8">
+                                    <a ng-href="{{url}}" target="_blank">
+                                        <input type="button" class="btn btn-default btn-md col-sm-offset-5 " value="Imprimir SOS" />
+                                    </a>
+                       </div>
+                       <br>
+                       <br>
+                        <div class="panel panel-default">
+                            <div class="panel-heading has-feedback">
+                                <!--<h4 class="panel-title">Solicitante</h4>-->
+                                <a href="" ng-click="muestraPanel(1)">SOLICITANTE&nbsp;&nbsp;<span class="   glyphicon glyphicon-chevron-down" aria-hidden="true" ng-show="!bandPS" data-placement="right" title="Click para mostrar Información" onmouseenter="$(this).tooltip('show')"></span><span class="   glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="bandPS" data-placement="right" title="Click para ocultar Información" onmouseenter="$(this).tooltip('show')"></span></a>
+                                <i class="glyphicon glyphicon-user form-control-feedback" title="HOLA"></i>
+                            </div>
+                            <div class="panel-body" ng-show="bandPS">
+
+                                <div class="form-group">
+                                    <label for="nombre" class="control-label col-md-1"><strong>Nombre: </strong></label>
+                                    <label for="nombre" class="control-label col-md-11">   {{sos.NombreUsuario}}</label>
+                                </div>
+
+                                <div class="form-group" ng-if="!bandMOD">
+                                    <label for="telefono" class="control-label col-md-2"><strong>Teléfono:</strong></label>
+                                    <label for="telefono" class="control-label col-md-4">{{posts[0].tel}}</label>
+                                    <label for="telefono" class="control-label col-md-2"><strong>Celular:</strong></label>
+                                    <label for="telefono" class="control-label col-md-4">{{posts[0].cel}}</label>
+                                </div>
+                                <!--Modo modificacion-->
+                                <div class="form-group" ng-if="bandMOD">
+                                    <label for="telefono" class="control-label col-md-2"><strong>Teléfono:</strong></label>
+                                    <input type="text" width="15" ng-model="sos.tel" />
+                                    <label for="telefono" class="control-label col-md-2"><strong>Celular:</strong></label>
+                                    <input type="text" width="15" ng-model="sos.cel" />
+                                </div>
+                                
+                                <div class="form-group" ng-if="!bandMOD">
+                                    <label for="" class="control-label col-xs-12 col-sm-12 col-md-3"><strong>Horario No. 1</strong></label>
+                                    <label for="horario" class="control-label col-xs-12 col-sm-12 col-md-1"><strong>De:</strong> </label>
+                                    <label for="horario" class="control-label col-xs-12 col-sm-12 col-md-2">{{posts[0].hraDispI1 }}</label>
+                                    <label for="horario" class="control-label col-xs-12 col-sm-12 col-md-1"><strong>A:</strong> </label>
+                                    <label for="horario" class="control-label col-xs-12 col-sm-12 col-md-5">{{posts[0].hraDispI2 }}</label>
+                                    <label for="" class="control-label col-xs-12 col-sm-12 col-md-3"><strong>Horario No. 2</strong></label>
+                                    <label for="horario" class="control-label col-xs-12 col-sm-12 col-md-1"><strong>De:</strong></label>
+                                    <label for="horario" class="control-label col-xs-12 col-sm-12 col-md-2">{{posts[0].hraDispF1}}</label>
+                                    <label for="horario" class="control-label col-xs-12 col-sm-12 col-md-1"><strong>A:</strong> </label>
+                                    <label for="horario" class="control-label col-xs-12 col-sm-12 col-md-5">{{posts[0].hraDispF2}}</label>
+                                </div>
+
+                                <div class="form-group" ng-if="bandMOD">
+                                    <label for="horario" class="control-label col-md-2"><strong>Hora Inicial:</strong> </label>
+                                    <input type="time" width="15" ng-model="sos.hraDispI1 " />
+                                    <label for="horario" class="control-label col-md-2"><strong>Hora Final:</strong> </label>
+                                    <input type="time" width="15" ng-model="sos.hraDispI2 " />
+                                    <br /><br /><br /><br />
+                                    <label for="horario" class="control-label col-md-2"><strong>Hora Inicial2:</strong> </label>
+                                    <input type="time" width="15" ng-model="sos.hraDispF1 " />
+                                    <label for="horario" class="control-label col-md-2"><strong>Hora Final:2</strong> </label>
+                                    <input type="time" width="15" ng-model="sos.hraDispF2 " />
+                                </div>
+
+                            </div>
+                        </div>
+                         
+                    </div>
+                    {{usuarios}}
+                    {{posts[0].idUsuario}}
+                    <div class="doorCode">
+                        <div class="panel panel-default">
+                            <div class="panel-heading has-feedback">
+                                <!--<h4 class="panel-title" ng-click="muestra()">Código de puerta</h4>-->
+                                <a href="" ng-click="muestraPanel(2)">UBICACIÓN&nbsp;&nbsp;<span class="   glyphicon glyphicon-chevron-down" aria-hidden="true" ng-show="!bandPP" data-placement="right" title="Click para mostrar Información" onmouseenter="$(this).tooltip('show')"></span><span class="   glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="bandPP" data-placement="right" title="Click para ocultar Información" onmouseenter="$(this).tooltip('show')"></span></a>
+                                <i class="glyphicon glyphicon-tag form-control-feedback"></i>
+                            </div>
+                            <div class="panel-body" ng-show="bandPP">
+                                <div class="form-group" ng-if="!bandMOD">
+                                    <h5><label for="code" class="control-label col-md-2"><strong>Código:</strong> </label></h5>
+                                    <h5><label for="code" class="control-label col-md-10">{{posts[0].claveCadena}}</label></h5>
+                                </div>
+                                <div class="form-group" ng-if="bandMOD">
+                                    <h5><label for="code" class="control-label col-md-2"><strong>Código:</strong> </label></h5>
+                                    <input type="text" ng-model="sos.claveCadena" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <div class="panel panel-default">
+                            <div class="panel-heading has-feedback">
+                                <!--<h4 class="panel-title">Descripción de SOS</h4>-->
+                                <a href="" ng-click="muestraPanel(3)">DESCRIPCIÓN DE SOS&nbsp;&nbsp;<span class="   glyphicon glyphicon-chevron-down" aria-hidden="true" ng-show="!bandPD" data-placement="right" title="Click para mostrar Información" onmouseenter="$(this).tooltip('show')"></span><span class="   glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="bandPD" data-placement="right" title="Click para ocultar Información" onmouseenter="$(this).tooltip('show')"></span></a>
+                                <i class="glyphicon glyphicon-list form-control-feedback"></i>
+                            </div>
+                            <div class="panel-body" ng-show="bandPD">
+                                <div class="form-group" ng-if="!bandMOD">
+                                    <textarea class="form-control desc" placeholder="Descripcion de la incidencia" rows="3" disabled='disabled'>{{posts[0].descripcion}}</textarea>
+                                </div>
+                                <div class="form-group" ng-if="bandMOD">
+                                    <textarea class="form-control desc" placeholder="Descripcion de la incidencia" rows="3" ng-model="sos.descripcion"></textarea>
+                                </div>
+                                <br />
+                                <input type="button" value="Guardar" ng-if="bandMOD" ng-click="guardaSOS()" />
+
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button ng-show="esAdmin()" ng-click="modificarSOS()" type="button" class="btn btn-primary btn-md" style="text-align:center" ng-if="!bandMOD">Modificar SOS  <span class="glyphicon glyphicon-edit"></span></button>
+                            <button type="button" class="btn btn-primary btn-md" ng-if="bandMOD" ng-click="guardaSOS()">Guardar SOS  <span class="glyphicon glyphicon-floppy-disk"></span></button>
+                            <button type="button" class="btn btn-primary btn-md" ng-click="cancelarModif()" ng-if="bandMOD">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+                </fieldset>
+                <div ng-show="esAdmin()">
+                <fieldset class="well the-fieldset">
+                    <legend class="the-legend">DETALLE DE ORDEN DE SERVICIO</legend>
+
+
+                    <!--Asignacion del SOS-->
+                    <div class="asignation">
+                        <div class="panel panel-default">
+                            <div class="panel-heading has-feedback">
+                                <!--<h4 class="panel-title">Asignación</h4>-->
+                                <a href="" ng-click="muestraPanel(4)">ASIGNACIÓN&nbsp;&nbsp;<span class="   glyphicon glyphicon-chevron-down" aria-hidden="true" ng-show="!bandPA" data-placement="right" title="Click para Mostrar Información" onmouseenter="$(this).tooltip('show')"></span><span class="   glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="bandPA" data-placement="right" title="Click para Ocultar Información" onmouseenter="$(this).tooltip('show')"></span></a>
+                                <i class="glyphicon glyphicon-user form-control-feedback"></i>
+                            </div>
+                            <div class="panel-body" ng-show="bandPA">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-md-6">
+                                            <h5>Operador:</h5>
+                                            <select ng-model="detalle.empleadoN" ng-options="e as e.nombreEmpleado for e in operador track by e.idEmpleado" class="form-control input-small" required>
+                                                <option value="">--Elige un empleado--</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <h5>Turno:</h5>
+                                            <select id="sel1" value="" class="form-control input-small">
+                                                <option>Matutino</option>
+                                                <option>Vespertino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detailSOS">
+                        <div class="panel panel-default">
+                            <div class="panel-heading has-feedback">
+                                <!--<h4 class="panel-title">Detalle de Orden de Servicio</h4>-->
+                                <a href="" ng-click="muestraPanel(5)">Detalle del Servicio&nbsp;&nbsp;<span class="   glyphicon glyphicon-chevron-down" aria-hidden="true" ng-show="!bandPDS" data-placement="right" title="Click para Mostrar información" onmouseenter="$(this).tooltip('show')"></span><span class="   glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="bandPDS" data-placement="right" title="Click para Ocultar información" onmouseenter="$(this).tooltip('show')"></span></a>
+                                <i class="glyphicon glyphicon-tasks form-control-feedback"></i>
+                            </div>
+                            <div class="panel-body" ng-show="bandPDS">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <h5>Prioridad:</h5>
+                                            
+                                            <select ng-model="detalle.prioridadN" ng-options="s.prioridad for s  in prioridad track by s.idPrioridad" class="form-control input-small selC">
+                                                <option value="">--Elige prioridad--</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <h5>Ramo:</h5>
+
+                                            <select ng-model="detalle.ramoN" ng-options="r as r.nombreRamo for r in ramo track by r.idRamo" class="form-control input-small" ng-click="compare();" ng-show="bandR">
+                                                <option value="">--Elige un ramo--</option>
+                                            </select>
+                                            <div class="input-group" ng-show="result">
+                                                <input type="text" class="form-control question1" input-sm ng-focus="bandR" placeholder="{{labelRamo}}" ng-model="otroRamo">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" ng-click="cancelarRamo();">
+                                                        Cancelar
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <h5>Tipo de Mantenimiento:</h5>
+                                            <select ng-model="detalle.tipomatenimientoN" ng-options="t as t.tipoMantenimiento for t in tipoMant track by t.idTipoMant" class="form-control input-small" ng-click="compareMant();" ng-show="bandM">
+                                                <option value="">--Elige un tipo de mantenimiento--</option>
+                                            </select>
+
+                                            <div class="input-group" ng-show="resultM">
+                                                <input type="text" class="form-control question1" input-sm placeholder="{{labelTipoM}}" ng-model="otroTipoM">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" ng-click="cancelarMant();">
+                                                        Cancelar
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <i style="margin-right: 0.5em; color: #EEEEEE;" class="icon-home icon-4x">lkjk</i>
+                </fieldset>
+                <fieldset class="well the-fieldset">
+                   
+                    <legend class="the-legend">ORDEN DE TRABAJO</legend>
+                    <div class="workOrder">
+                        <div class="panel panel-default">
+                            <div class="panel-heading has-feedback">
+                                <a href="" ng-click="muestraPanel(6)">REPORTE DE ORDENES DE TRABAJO&nbsp;&nbsp;<span class="   glyphicon glyphicon-chevron-down" aria-hidden="true" ng-show="!bandPOT" data-placement="right" title="Click para Mostrar Orden de Trabajo" onmouseenter="$(this).tooltip('show')"></span><span class="   glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="bandPOT" data-placement="right" title="Click para Ocultar Orden de Trabajo" onmouseenter="$(this).tooltip('show')"></span>
+                                </a>
+                                <i class="glyphicon glyphicon-book form-control-feedback"></i>
+                            </div>
+                            <div class="panel-body" ng-show="bandPOT">
+                                <!-------------------------------------------------------------------->
+                                <form name="addOrden" layout="column" class="md-padding" style="padding-top: 0;">
+                                    <div layout="row" layout-sm="column">
+                                        <md-button class="add-tab md-primary md-raised" style="margin-right: 0;" ng-click="addTab('Orden de Trabajo '+numOT)"><span class="glyphicon glyphicon-plus"></span> Agregar ORDEN DE TRABAJO</md-button>
+                                    </div>
+                                </form>
+                                <!--{{tabs}}-->
+                                <!--{{selectedIndex}}-->
+                                <div class="sample tabsdemoDynamicTabs" layout="column" ng-cloak="">
+                                    <md-content class="md-padding">
+                                        <md-tabs md-selected="selectedIndex" md-border-bottom="" md-autoselect="" md-dynamic-height="true">
+                                            <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="Orden de Trabajo {{$index + 1}}">
+                                                <div class="demo-tab tab{{$index%4}}" style="padding: 5px; text-align: center;">
+                                                    
+
+                                                    <a ng-href="{{urlOT}}{{tab.idOT}}" target="_blank">
+                                                        <input type="button" class="btn btn-default pull-right" value="Imprimir"> 
+                                                    </a>
+                                                    <div class="form-group">
+                                                        <label for="" class="control-label col-sm-12 col-md-12">Id SOS : {{posts[0].idSOS}}  </label>
+                                                        <label for="" class="control-label col-sm-12 col-md-12">Id OT : {{tab.idOT}} </label>
+                                                        <label for="" class="control-label col-sm-12 col-md-12">Estado de OT : <strong>{{tab.estado}} </strong> </label>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <br>
+                                                        <label for="" class="control-label col-sm-12 col-md-12">Descripción de SOS: </label>
+                                                        <textarea class="form-control" rows="2" id="comment" ng-model="tab.descripcion" disabled='disabled'></textarea>
+                                                    </div>
+
+                                                    <label for="" class="control-label col-sm-12 col-md-2">Acción: </label>
+                                                    <input type="text" class="form-control" placeholder="Describa la acción..." ng-model="tab.accion" ng-disabled="tab.save">
+                                                    <label for="" class="control-label col-sm-12 col-md-2">Operario: </label>
+                                                    <select class="form-control" ng-model="tab.operario" ng-options="e as e.nombreEmpleado for e in operadorOT.operador track by e.idEmpleado" ng-init="setOperario($index)" ng-disabled="tab.save"></select>
+                                                    <label for="" class="control-label col-sm-12 col-md-12">Fecha: </label>
+                                                    <input type="date" class="form-control" ng-model="tab.fecha" ng-init="setFecha($index)" ng-disabled="tab.save">
+                                                    <label for="" class="control-label col-sm-12 col-md-12">Hora de inicio de OT (24 hrs): </label>
+                                                    <input type="time" class="form-control" ng-model="tab.hraIniOT" ng-init="setHora1($index)" ng-disabled="tab.save">
+                                                    <label for="" class="control-label col-sm-12 col-md-12">Instrucción: </label>
+                                                    <input type="text" class="form-control" placeholder="Describa la instrucción..." ng-model="tab.instruccion" ng-disabled="tab.save">
+                                                   <label for="" class="control-label col-sm-12 col-md-12">Hora de atención solicitante(24 hrs): </label>
+                                                    <input type="time" class="form-control" ng-model="tab.hraAtencion" ng-init="setHora2($index)" ng-disabled="tab.save">
+                                                    <label for="" class="control-label col-sm-12 col-md-12">Reporte: </label>
+                                                    <textarea name="" id="" class="form-control" rows="2" placeholder="Detalle el reporte..." ng-model="tab.reporte" ng-disabled="tab.save"></textarea>
+
+                                                    <div class="form-group">
+
+                                                        <div class="row">
+                                                          <button ng-click="eliminarOT( tab )" type="button" class="btn btn-primary btn-md">Eliminar   <span class="glyphicon glyphicon-minus"></span></button>
+                                                          <button ng-click="updateOT()" type="button" class="btn btn-primary btn-md" ng-hide="!tab.save">Modificar   <span class="glyphicon glyphicon-edit"></span></button>
+                                                            <button type="button" class="btn btn-primary btn-md" ng-hide="tab.save" ng-click="guardarOT($index)">Guardar   <span class="glyphicon glyphicon-floppy-disk"></span></button>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </md-tab>
+                                        </md-tabs>
+                                    </md-content>
+
+                                </div>
+                                <!-------------------------------------------------------------------->
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+           
+
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <textarea class="form-control desc" placeholder="Comentarios opcionales de Orden de Servicio..." ng-model="detalle.comentario" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button ng-click="checaPack()" type="button" class="btn btn-primary btn-md">Guardar Orden de Servicio</button>
+                    </div>
+                    <a ng-href="{{urlLibera}}" target="_blank">
+                        <input type="button" class="btn btn-default pull-right" value="Formato de Liberarcion"></input>
+                    </a>
+
+                </div>
+                 </div>
+
+                <!--</div>-->
+            </div>
+        </form>
+    </div>
+</div>
