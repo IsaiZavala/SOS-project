@@ -14,11 +14,16 @@ angular.module("app")
             return true;
     } 
     
-    auth.setCredentials = function(data){
+
+    auth.setCredentials = function (data) {
+
 //        $rootScope.user = {
 //                    idRol: data.idRol,
 //                    idUsuario: data.idUsuario,
-//                };
+        //                };
+
+        // console.log(data);
+         alert(data.idRol + ' ' + data.idUsuario + ' ' + data.NombreUsuario );
           $window.sessionStorage.setItem('idRol', data.idRol);
           $window.sessionStorage.setItem('idUsuario', data.idUsuario);
           $window.sessionStorage.setItem('nombreUsu', data.NombreUsuario);

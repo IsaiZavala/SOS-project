@@ -66,6 +66,17 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="adminUser.html" />
+    <Content Include="agregarUsuario.html" />
+    <Content Include="altaSOS.html" />
+    <Content Include="buzon.html" />
+    <Content Include="Chart.js" />
+    <Content Include="detalleSOS.html" />
+    <Content Include="diagramaSOS.html" />
+    <Content Include="encuestaSatisfaccion2.html" />
+    <Content Include="Forms\Login.aspx" />
+    <Content Include="graficandoENCUESTA.html" />
+    <Content Include="ordenTrabajo.html" />
     <Content Include="packages.config" />
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap-theme.min.css.map" />
@@ -133,9 +144,24 @@
     <Content Include="js\services\dataCombos.js" />
     <Content Include="js\ui-bootstrap-tpls-2.1.4.min.js" />
     <Content Include="login.html" />
+    <Content Include="pagina1.html" />
+    <Content Include="pagina2.html" />
+    <Content Include="pagina3.html" />
+    <Content Include="proeba.html" />
+    <Content Include="prueba.html" />
+    <Content Include="rosel.html" />
+    <Content Include="scriptGrafica.js" />
+    <Content Include="tablaBuzon.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>
@@ -153,7 +179,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2726</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:3102/</IISUrl>
+          <IISUrl>http://localhost:3222/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

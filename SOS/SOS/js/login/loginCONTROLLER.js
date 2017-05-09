@@ -9,16 +9,17 @@
         login.usuario = "";
         login.password = "";
         login.activated = false;
-  
 
         login.validaCodigo2 = function()
         {
              login.messageError = "";    
 
              login.activated = true;
+
             //sos.validacionCode.aparece = false;
             if((login.usuario === undefined || login.usuario == "") || (login.password === undefined || login.password == "" ))
             {
+                alert('no se pudo validar el usuario');
                  login.messageError = "";    
                   login.activated = false;
             }
@@ -27,9 +28,14 @@
                  var data = {
                     userName: login.usuario,
                     userPassword: login.password
-                }
+                 }
+
+
                 //sos.seccion = $filter('uppercase')(sos.seccion);
-                api.post("/login/verificaUsuario/", data)
+                // api.post("/Forms/Login.aspx", data)
+                api.post("/Forms/Login.aspx/LogearUsuario", JSON.stringify({ 'data': data }))
+                     // api.post("/login/verificaUsuario/", data)
+                
               
                 .then(function success(response) {
 
@@ -37,7 +43,7 @@
                     
                     
                      login.messageError = "";
-                    Auth.setCredentials(response.data);
+                    Auth.setCredentials(response.data.d);
                 
                     $location.path('/pagina1');
                     

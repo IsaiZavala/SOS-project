@@ -2,11 +2,11 @@
     'use strict';
     angular.module('app', ['ui.bootstrap', 'ngMaterial', 'ngRoute', 'buzon', 'detailApp', 'otApp', 'login', 'admUser', 'agregarUser', 'enc'])
 //    .constant("url", 'http://jsonplaceholder.typicode.com');
-    .constant("url", 'http://localhost:3000')
+    .constant("url", 'http://localhost:3222') 
    .run(function ($rootScope, $location, Auth, $window) //Auth
         {
     $rootScope.$on('$routeChangeStart', function (event) {
-
+        $window.sessionStorage.clear();
        // console.log($location.url());
         if (!Auth.isLoggedIn()) {
          //   console.log('DENY');
