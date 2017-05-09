@@ -11,7 +11,7 @@ namespace SOS.Forms
 {
 
 
-    public partial class Login1
+    public partial class WebServiceAPI
     {
 
         /// <summary>

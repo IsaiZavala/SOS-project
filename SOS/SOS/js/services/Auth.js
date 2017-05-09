@@ -6,7 +6,7 @@ angular.module("app")
    var auth = {};
     $window.sessionStorage.user = {};
     
-    auth.isLoggedIn = function(){
+    auth.isLoggedIn = function () {
         var idRol = $window.sessionStorage.getItem('idRol');
         if(idRol == null)
             return false;
@@ -23,7 +23,7 @@ angular.module("app")
         //                };
 
         // console.log(data);
-         alert(data.idRol + ' ' + data.idUsuario + ' ' + data.NombreUsuario );
+         
           $window.sessionStorage.setItem('idRol', data.idRol);
           $window.sessionStorage.setItem('idUsuario', data.idUsuario);
           $window.sessionStorage.setItem('nombreUsu', data.NombreUsuario);
@@ -33,14 +33,13 @@ angular.module("app")
     
     
     auth.esAdmin = function(cadena){
-        
        if($window.sessionStorage.getItem('idRol') == 1)
            return true;
         else 
             return false;
     }
 
-    auth.esSoli = function() {
+    auth.esSoli = function () {
         if ($window.sessionStorage.getItem('idRol') == 2)
             return true;
         else

@@ -32,9 +32,8 @@
 
 
                 //sos.seccion = $filter('uppercase')(sos.seccion);
-                // api.post("/Forms/Login.aspx", data)
-                api.post("/Forms/Login.aspx/LogearUsuario", JSON.stringify({ 'data': data }))
-                     // api.post("/login/verificaUsuario/", data)
+                api.post("/Forms/WebServiceAPI.aspx/verificaUsuario", JSON.stringify({ 'data': data }))
+                // api.post("/login/verificaUsuario/", data)
                 
               
                 .then(function success(response) {
@@ -43,12 +42,9 @@
                     
                     
                      login.messageError = "";
-                    Auth.setCredentials(response.data.d);
-                
-                    $location.path('/pagina1');
-                    
-                    
-                    
+                     Auth.setCredentials(response.data.d);
+
+                     $location.path('/pagina1');
                     
             }, function myError(response) {
                   

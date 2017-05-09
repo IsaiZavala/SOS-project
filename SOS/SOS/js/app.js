@@ -6,7 +6,7 @@
    .run(function ($rootScope, $location, Auth, $window) //Auth
         {
     $rootScope.$on('$routeChangeStart', function (event) {
-        $window.sessionStorage.clear();
+        // $window.sessionStorage.clear();
        // console.log($location.url());
         if (!Auth.isLoggedIn()) {
          //   console.log('DENY');
@@ -38,7 +38,7 @@
         i.close = function()
         {
               $window.sessionStorage.clear();
-        $location.path('/login');
+            $location.path('/login');
         }
         
     }) ;
