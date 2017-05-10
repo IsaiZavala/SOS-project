@@ -32,5 +32,23 @@ namespace SOS.Tools
 
             return ds;
         }
+
+        public static int ExecuteCommandNonQuery(string strQuery)
+        {
+            int rowsAffected = 0;
+            using (MySqlConnection mySqlConnection = new MySqlConnection(StringConnection))
+            {
+                mySqlConnection.Open();
+
+                using (MySqlCommand mySqlCommand = new MySqlCommand(strQuery, mySqlConnection))
+                {
+                    rowsAffected = mySqlCommand.ExecuteNonQuery();
+                }
+
+                mySqlConnection.Close();
+            }
+
+            return rowsAffected;
+        }
     }
 }

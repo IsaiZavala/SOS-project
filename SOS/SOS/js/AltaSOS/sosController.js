@@ -18,6 +18,7 @@
         sos.enviaActivated = false;
         var eseoese = {};
         sos.fechaHoy = new Date();
+        sos.ErrorMessage = "";
         
         cargaDatos();
         
@@ -90,10 +91,16 @@
             eseoese = {
                 fechaReporte: new Date(),
                 informante: sos.informante,
-                codigoPuerta: sos.seccion,
+                claveCadena: sos.seccion,
                 descripcion: sos.descripcion,
                 asunto:  sos.asunto,   
-                idUsuario: idUsu
+                idUsuario: idUsu,
+                hraDispI1: sos.informante.hora1,
+                hraDispI2: sos.informante.hora2,
+                hraDispF1: sos.informante.hora3,
+                hraDispF2: sos.informante.hora4,
+                tel: sos.informante.telefono,
+                cel: sos.informante.celular
             };
         }
         
@@ -111,17 +118,20 @@
                             $mdDialog.show(conf).then(function () {
                                 sos.enviaActivated = true;
                                 llenaS0S();
-                                api.post("/alta/SOS",eseoese)
-                                .then(function sucess(response) 
+                                // api.post("/alta/SOS",eseoese)
+                                api.post("/Forms/WebServiceAPI.aspx/SOS", JSON.stringify({ 'data': eseoese }))
+                                .then(function sucess(response)
                                 {
                                     sos.enviaActivated = false;
                                     sos.ordenID = response.data.insertId;
                                     //scope.orden = response.data.insertId;
-                                    console.log(response.data.insertId);
+                                    console.log(response.data);
                                     $("#myModal3").modal();
                                     limpiaCampos();
                                 }, function myError(response) {
-                                //    console.log("adios");
+                                    // console.log(response.data);
+                                    sos.ErrorMessage = response.data.Message;
+                                    sos.enviaActivated = false;
                                     });
 
 

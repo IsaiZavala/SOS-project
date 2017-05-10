@@ -80,5 +80,49 @@ namespace SOS.Forms
 
             return dicResult;
         }
+
+        [WebMethod]
+        public static void SOS(IDictionary<string, object> data)
+        {
+            insertSOS(data);
+        }
+
+
+        public static void insertSOS(IDictionary<string, object> data)
+        {
+            string strQuery = @"INSERT INTO sos (claveCadena, fecha, idUsuario, descripcion, idStatus, cel, tel, asunto, hraDispI1, hraDispI2, hraDispF1, hraDispF2)
+                VALUES ('@claveCadena', '@fecha', @idUsuario, '@descripcion', @idStatus, '@cel', '@tel', '@asunto', '@hraDispI1', '@hraDispI2', '@hraDispF1', '@hraDispF2')";
+
+            strQuery = strQuery.Replace("@claveCadena", data["claveCadena"].ToString());
+            strQuery = strQuery.Replace("@fecha", DateTime.Now.ToString("yyyy/MM/dd"));
+            strQuery = strQuery.Replace("@idUsuario", data["idUsuario"].ToString());
+            strQuery = strQuery.Replace("@descripcion", data["descripcion"].ToString());
+            strQuery = strQuery.Replace("@idStatus", "1");
+            strQuery = strQuery.Replace("@cel", data["cel"].ToString());
+            strQuery = strQuery.Replace("@tel", data["tel"].ToString());
+            strQuery = strQuery.Replace("@asunto", data["asunto"].ToString());
+            strQuery = strQuery.Replace("@hraDispI1", data["hraDispI1"].ToString());
+            strQuery = strQuery.Replace("@hraDispI2", data["hraDispI2"].ToString());
+
+            if (data.ContainsKey("hraDispF1"))
+            {
+                strQuery = strQuery.Replace("@hraDispF1", data["hraDispF1"].ToString());
+            }
+            else
+            {
+                strQuery = strQuery.Replace("@hraDispF1", "00:00");
+            }
+
+            if (data.ContainsKey("hraDispF2"))
+            {
+                strQuery = strQuery.Replace("@hraDispF2", data["hraDispF2"].ToString());
+            }
+            else
+            {
+                strQuery = strQuery.Replace("@hraDispF2", "00:00");
+            }
+
+            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+        }
     }
 }
