@@ -139,20 +139,21 @@
         
         sos.validaCodigo = function(){
            sos.validacionCode.aparece = false;
-            if(sos.seccion != "")
-            {
-                sos.activated = true;
+           if(sos.seccion != "")
+           {
+               sos.activated = true;
 
-                 // console.log("bien");
+               // console.log("bien");
                sos.seccion = $filter('uppercase')(sos.seccion);
-                api.get("/alta/verificaCadena/"+sos.seccion)
+               // api.get("/alta/verificaCadena/" + sos.seccion)
+               api.post("/Forms/WebServiceAPI.aspx/verificaCadena", JSON.stringify({ 'data': sos.seccion }))
                // api.get('/posts')
                 .then(function success(response) {
                    sos.validacionCode.aparece = true;
                     console.log(response.data);
                     sos.validacionCode.server = true;
                     
-                    if (response.data.cadenaregresada != null){
+                    if (response.data.d.cadenaregresada != null){
                          sos.activated = false;
                          sos.validacionCode.valido = true;
 
@@ -174,7 +175,7 @@
                     sos.validacionCode.aparece = true;
                     sos.validacionCode.valido = false;
                     sos.validacionCode.server = false;
-                    console.log("bad");
+                    console.log("request error verificaCadena");
                     sos.validaCode = false;
                     sos.activated = false;
                 });

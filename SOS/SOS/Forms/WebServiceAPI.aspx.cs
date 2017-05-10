@@ -42,5 +42,43 @@ namespace SOS.Forms
 
             return dirResult;
         }
+
+        [WebMethod]
+        public static Dictionary<string, object> verificaCadena(string data)
+        {
+            // method adapted from models/Cadena.js
+            if (data.Length <= 1)
+            {
+                throw new Exception("La cadena no tiene el formato correcto");
+            }
+
+            string edificio = data[0].ToString();
+            string strNivel = data[1].ToString();
+            int nivel;
+            int.TryParse(strNivel, out nivel);
+
+            string strQuery = "select numNiveles from edificio where nombre ='@edificio'";
+            strQuery = strQuery.Replace("@edificio", edificio);
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros");
+            }
+
+            int numNiveles;
+            int.TryParse(ds.Tables[0].Rows[0]["numNiveles"].ToString(), out numNiveles);
+
+            if (nivel > numNiveles)
+            {
+                throw new Exception("No coincide el numero de niveles");
+            }
+
+            Dictionary<string, object> dicResult = new Dictionary<string, object>();
+            dicResult.Add("cadenaregresada", data);
+
+            return dicResult;
+        }
     }
 }
