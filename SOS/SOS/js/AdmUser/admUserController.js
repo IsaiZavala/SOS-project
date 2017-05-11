@@ -10,23 +10,41 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
     cargaUsuarios();
     function cargaUsuarios()
     {
-        api.get("/adm/dameUsuarios").then(function success(data) {
-        console.log(data);
-        scope.usuarios = data.data;})
+        // api.get("/adm/dameUsuarios")
+        api.post("/Forms/WebServiceAPI.aspx/dameUsuarios", null)
+            .then(function success(data) {
+                // console.log(data);
+                scope.usuarios = data.data.d;
+            }, function myError(response) {
+                console.log("error");
+                console.log(response.data);
+            });
+            
     }
     cargaEmpleados();
     function cargaEmpleados() {
-        api.get("/adm/dameEmpleados").then(function success(data) {
-            console.log(data);
-            scope.empleados = data.data;
-        })
+        // api.get("/adm/dameEmpleados")
+        api.post("/Forms/WebServiceAPI.aspx/dameEmpleados", null)
+            .then(function success(data) {
+            // console.log(data);
+            scope.empleados = data.data.d;
+        }, function myError(response) {
+            console.log("error");
+            console.log(response.data);
+        });
     }
     cargaRamos();
     function cargaRamos() {
-        api.get("/adm/dameRamos").then(function success(data) {
-            console.log(data);
-            scope.ramos = data.data;
-        })
+        // api.get("/adm/dameRamos")
+        api.post("/Forms/WebServiceAPI.aspx/dameRamos", null)
+            .then(function success(data) {
+            // console.log(data);
+            scope.ramos = data.data.d;
+
+        }, function myError(response) {
+            console.log("error");
+            console.log(response.data);
+        });
     }
     scope.agregaUsuario= function (ev,id,tip)
     {

@@ -38,10 +38,16 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
         }
     }
     function cargaModelos(){
-        api.get("/adm/dameRoles").then(function success(data) {
-            console.log(data);
-            scope.roles = data.data;
-        })
+        // api.get("/adm/dameRoles")
+        api.post("/Forms/WebServiceAPI.aspx/dameRoles", null)
+            .then(function success(data) {
+            // console.log(data);
+            scope.roles = data.data.d;
+        }, function myError(response) {
+            console.log("error");
+            console.log(response.data);
+            // scope.band = true;
+        });
     }
     scope.agregarUsuario= function()
     {
