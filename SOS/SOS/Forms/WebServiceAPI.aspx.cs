@@ -82,16 +82,17 @@ namespace SOS.Forms
         }
 
         [WebMethod]
-        public static void SOS(IDictionary<string, object> data)
+        public static IDictionary<string, object> SOS(IDictionary<string, object> data)
         {
-            insertSOS(data);
+            return insertSOS(data);
         }
 
 
-        public static void insertSOS(IDictionary<string, object> data)
+        public static IDictionary<string, object> insertSOS(IDictionary<string, object> data)
         {
             string strQuery = @"INSERT INTO sos (claveCadena, fecha, idUsuario, descripcion, idStatus, cel, tel, asunto, hraDispI1, hraDispI2, hraDispF1, hraDispF2)
-                VALUES ('@claveCadena', '@fecha', @idUsuario, '@descripcion', @idStatus, '@cel', '@tel', '@asunto', '@hraDispI1', '@hraDispI2', '@hraDispF1', '@hraDispF2')";
+                VALUES ('@claveCadena', '@fecha', @idUsuario, '@descripcion', @idStatus, '@cel', '@tel', '@asunto', '@hraDispI1', '@hraDispI2', '@hraDispF1', '@hraDispF2'); 
+                SELECT LAST_INSERT_ID();";
 
             strQuery = strQuery.Replace("@claveCadena", data["claveCadena"].ToString());
             strQuery = strQuery.Replace("@fecha", DateTime.Now.ToString("yyyy/MM/dd"));
@@ -122,7 +123,19 @@ namespace SOS.Forms
                 strQuery = strQuery.Replace("@hraDispF2", "00:00");
             }
 
-            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+            object resultID = Tools.DataSetHelper.ExecuteScalar(strQuery);
+
+            IDictionary<string, object> dicResult = new Dictionary<string, object>();
+            if (resultID != null)
+            {
+                dicResult.Add("insertId", resultID);
+            }
+            else
+            {
+                dicResult.Add("insertId", "-1");
+            }
+
+            return dicResult;
         }
     }
 }

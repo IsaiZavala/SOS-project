@@ -122,10 +122,10 @@
                                 api.post("/Forms/WebServiceAPI.aspx/SOS", JSON.stringify({ 'data': eseoese }))
                                 .then(function sucess(response)
                                 {
+                                    // console.log(response.data);
                                     sos.enviaActivated = false;
-                                    sos.ordenID = response.data.insertId;
+                                    sos.ordenID = response.data.d.insertId;
                                     //scope.orden = response.data.insertId;
-                                    console.log(response.data);
                                     $("#myModal3").modal();
                                     limpiaCampos();
                                 }, function myError(response) {

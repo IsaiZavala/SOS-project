@@ -50,5 +50,23 @@ namespace SOS.Tools
 
             return rowsAffected;
         }
+
+        public static object ExecuteScalar(string strQuery)
+        {
+            object p_result = null;
+            using (MySqlConnection mySqlConnection = new MySqlConnection(StringConnection))
+            {
+                mySqlConnection.Open();
+
+                using (MySqlCommand mySqlCommand = new MySqlCommand(strQuery, mySqlConnection))
+                {
+                    p_result = mySqlCommand.ExecuteScalar();
+                }
+
+                mySqlConnection.Close();
+            }
+
+            return p_result;
+        }
     }
 }
