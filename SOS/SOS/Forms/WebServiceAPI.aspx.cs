@@ -87,7 +87,6 @@ namespace SOS.Forms
             return insertSOS(data);
         }
 
-
         public static IDictionary<string, object> insertSOS(IDictionary<string, object> data)
         {
             string strQuery = @"INSERT INTO sos (claveCadena, fecha, idUsuario, descripcion, idStatus, cel, tel, asunto, hraDispI1, hraDispI2, hraDispF1, hraDispF2)
@@ -137,5 +136,133 @@ namespace SOS.Forms
 
             return dicResult;
         }
+
+        [WebMethod]
+        public static List<Dictionary<string, object>> dameUsuarios()
+        {
+            // method adapted from administracion/dameUsuarios
+            return getUsuariosRol();
+        }
+
+        public static List<Dictionary<string, object>> getUsuariosRol()
+        {
+            // method adapted from models/usuarios.js/getUsuariosRol
+            string strQuery = "SELECT * FROM usuarioRol";
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros de usuarioRol");
+            }
+
+            List<Dictionary<string, object>> lstDic = new List<Dictionary<string, object>>();
+            
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                Dictionary<string, object> dicResultado = new Dictionary<string, object>();
+                dicResultado.Add("idUsuario", dr["idUsuario"]);
+                dicResultado.Add("usuario", dr["usuario"]);
+                dicResultado.Add("pass", dr["pass"]);
+                // dicResultado.Add("idRol", dr["idRol"]);
+                // dicResultado.Add("tipoROl", dr["tipoROl"]);
+                dicResultado.Add("descripcion", dr["descripcion"]);
+                lstDic.Add(dicResultado);
+            }
+
+            return lstDic;
+        }
+
+        [WebMethod]
+        public static List<Dictionary<string, object>> dameEmpleados()
+        {
+            return getEmpleado();
+        }
+
+        public static List<Dictionary<string, object>> getEmpleado()
+        {
+            string strQuery = "SELECT * FROM empleado WHERE activo=true";
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros en empleado");
+            }
+
+            List<Dictionary<string, object>> lstResultados = new List<Dictionary<string, object>>();
+            foreach(DataRow dr in ds.Tables[0].Rows)
+            {
+                Dictionary<string, object> dirResult = new Dictionary<string, object>();
+                dirResult.Add("idEmpleado", dr["idEmpleado"]);
+                dirResult.Add("nombreEmpleado", dr["nombreEmpleado"]);
+                dirResult.Add("cargo", dr["cargo"]);
+                // dirResult.Add("Activo", dr["cargo"]);
+
+                lstResultados.Add(dirResult);
+            }
+
+            return lstResultados;
+        }
+
+        [WebMethod]
+        public static List<Dictionary<string, object>> dameRamos()
+        {
+            return getRamo();
+        }
+
+        public static List<Dictionary<string, object>> getRamo()
+        {
+            string strQuery = "SELECT * FROM ramo WHERE activo=true";
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros en ramo");
+            }
+
+            List<Dictionary<string, object>> lstResult = new List<Dictionary<string, object>>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                Dictionary<string, object> dirResult = new Dictionary<string, object>();
+                dirResult.Add("idRamo", dr["idRamo"]);
+                dirResult.Add("nombreRamo", dr["nombreRamo"]);
+                // dirResult.Add("Activo", dr["Activo"]);
+                lstResult.Add(dirResult);
+            }
+
+            return lstResult;
+        }
+
+        [WebMethod]
+        public static List<Dictionary<string, object>> dameRoles()
+        {
+            return getModelos();
+        }
+
+        public static List<Dictionary<string, object>> getModelos()
+        {
+            string strQuery = "Select * FROM roles";
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros para roles");
+            }
+
+            List<Dictionary<string, object>> lstResult = new List<Dictionary<string, object>>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                Dictionary<string, object> dirResult = new Dictionary<string, object>();
+                dirResult.Add("idRol", dr["idRol"]);
+                dirResult.Add("tipoROl", dr["tipoROl"]);
+                dirResult.Add("descripcion", dr["descripcion"]);
+                lstResult.Add(dirResult);
+            }
+
+            return lstResult;
+        }
+
     }
 }
