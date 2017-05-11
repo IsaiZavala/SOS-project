@@ -18,3 +18,24 @@ C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Test\SOS\SOS\SOS\bin\Micro
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Test\SOS\SOS\SOS\obj\Debug\SOS.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Test\SOS\SOS\SOS\obj\Debug\SOS.dll
 C:\Users\Lenovo\Documents\Visual Studio 2015\Projects\Test\SOS\SOS\SOS\obj\Debug\SOS.pdb
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\csc.exe
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\vbc.exe
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\VBCSCompiler.exe
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\SOS.dll.config
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\SOS.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\SOS.pdb
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\MySql.Data.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\obj\Debug\SOS.csprojResolveAssemblyReference.cache
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\obj\Debug\SOS.dll
+C:\Users\Aurelio\Source\Repos\SOS-project\SOS\SOS\obj\Debug\SOS.pdb

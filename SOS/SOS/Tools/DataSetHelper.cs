@@ -20,6 +20,7 @@ namespace SOS.Tools
 
             using (MySqlConnection mySqlConnection = new MySqlConnection(StringConnection))
             {
+                //Aqui hizo mame, por obvias razones : p
                 mySqlConnection.Open();
 
                 using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(strQuery, mySqlConnection))
