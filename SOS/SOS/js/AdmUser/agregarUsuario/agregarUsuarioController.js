@@ -49,20 +49,23 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
             // scope.band = true;
         });
     }
+
     scope.agregarUsuario= function()
     {
 
         
-        api.post("/adm/altaUsuario", scope.usuario).then(function (data) {
+        // api.post("/adm/altaUsuario", scope.usuario)
+        api.post("/Forms/WebServiceAPI.aspx/altaUsuario", JSON.stringify({ 'data': scope.usuario })).then(function (data) {
             console.log(data);
             if (data.status == 200) {
-                scope.id = data.data;
+                scope.id = data.data.d;
                 alertas.aviso("Se a guardado exitosamente");
             }
         }, function myError(response) {
             scope.band = true;
         });
     }
+
     scope.agregarEmpleado = function ()
     {
         

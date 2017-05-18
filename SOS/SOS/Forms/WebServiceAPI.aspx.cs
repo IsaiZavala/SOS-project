@@ -264,5 +264,34 @@ namespace SOS.Forms
             return lstResult;
         }
 
+        [WebMethod]
+        public static int altaUsuario(Dictionary<string, object> data)
+        {
+            return insertaUsuario(data);
+        }
+
+        public static int insertaUsuario(Dictionary<string, object> data)
+        {
+            string strQuery = @"INSERT INTO usuarios(usuario, pass, idRol) VALUES('@usuario', '@pass', @idRol);
+                                SELECT LAST_INSERT_ID();";
+
+            strQuery = strQuery.Replace("@usuario",  data["usuario"].ToString());
+            strQuery = strQuery.Replace("@pass", data["pass"].ToString());
+
+            Dictionary<string, object> dicRol = data["rol"] as Dictionary<string, object>;
+
+            strQuery = strQuery.Replace("@idRol", dicRol["idRol"].ToString());
+
+            object objResult = Tools.DataSetHelper.ExecuteScalar(strQuery);
+
+            Dictionary<string, object> dirResult = new Dictionary<string, object>();
+
+            if (objResult != null)
+            {
+                return int.Parse(objResult.ToString());
+            }
+            
+            return -1;
+        }
     }
 }
