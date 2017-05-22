@@ -71,15 +71,16 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
 
         var conf = alertas.confirma("Seguro que desea eliminar?", "Se eliminara usuario");
         $mdDialog.show(conf).then(function () {
-            api.get("/adm/eliminaUsuario/" + id).then(function success(data) {
-                console.log(data);
-                scope.id = data.data;
+            //api.get("/adm/eliminaUsuario/" + id)
+            api.post("/Forms/WebServiceAPI.aspx/eliminarUsuario", JSON.stringify({ 'id': id }))
+                .then(function success(data) {
+                scope.id = data.data.d;
                 cargaUsuarios();
             })
 
         }, function () {
-            console.log("adios");
-            
+            // en caso de cancelar el eliminar usuario hace esta funcion
+            // console.log("adios");
         });
        
     }

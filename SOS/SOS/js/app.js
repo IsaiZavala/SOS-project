@@ -4,7 +4,10 @@
 //    .constant("url", 'http://jsonplaceholder.typicode.com');
     .constant("url", 'http://localhost:3222') 
    .run(function ($rootScope, $location, Auth, $window) //Auth
-        {
+   {
+       // la siguiente linea borra la session
+       // $window.sessionStorage.clear();
+
     $rootScope.$on('$routeChangeStart', function (event) {
         // $window.sessionStorage.clear();
        // console.log($location.url());

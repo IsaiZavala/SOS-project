@@ -25,9 +25,10 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
     {
         if(idU!=null)
         {
-            api.get("/adm/dameUsuariosID/" + idU).then(function success(data) {
-                console.log(data);
-                var usu = data.data[0];
+            //api.get("/adm/dameUsuariosID/" + idU)
+            api.post("/Forms/WebServiceAPI.aspx/dameUsuariosID", JSON.stringify({ 'IdUsuario' : idU})).then(function success(data) {
+                // console.log(data);
+                var usu = data.data.d[0];
                 scope.usuario.usuario= usu.usuario;
                 scope.usuario.pass = usu.pass;
                 scope.usuario.nombre = usu.NombreUsuario;
@@ -68,8 +69,8 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
 
     scope.agregarEmpleado = function ()
     {
-        
-        api.post("/adm/altaEmpleado", scope.empleado).then(function (data) {
+        // api.post("/adm/altaEmpleado", scope.empleado)
+        api.post("/Forms/WebServiceAPI.aspx/altaEmpleado", JSON.stringify ({ 'data' : scope.empleado})).then(function (data) {
             console.log(data);
             if (data.status == 200) {
                 scope.id = data.data;

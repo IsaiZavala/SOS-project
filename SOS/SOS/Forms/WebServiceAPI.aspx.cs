@@ -267,7 +267,14 @@ namespace SOS.Forms
         [WebMethod]
         public static int altaUsuario(Dictionary<string, object> data)
         {
-            return insertaUsuario(data);
+            if (string.IsNullOrEmpty(data["idUsuario"].ToString()))
+            {
+                return insertaUsuario(data);
+            }
+            else
+            {
+                return modificaUsuario(data);
+            }
         }
 
         public static int insertaUsuario(Dictionary<string, object> data)
@@ -291,6 +298,98 @@ namespace SOS.Forms
                 return int.Parse(objResult.ToString());
             }
             
+            return -1;
+        }
+
+        public static int modificaUsuario(Dictionary<string, object> data)
+        {
+            Dictionary<string, object> dicRol = data["rol"] as Dictionary<string, object>;
+
+            string strQuery = @"UPDATE usuarios SET usuario = '@Usuario', pass = '@Pass', idRol = @IdRol
+                     /*, NombreUsuario = '@NombreUsuario', correo = '@Correo' */ WHERE idUsuario = @IdUsuario";
+
+            strQuery = strQuery.Replace("@Usuario", data["usuario"].ToString())
+                                    .Replace("@Pass", data["pass"].ToString())
+                                    .Replace("@NombreUsuario", data["nombre"].ToString())
+                                    .Replace("@Correo", data["correo"].ToString())
+                                    .Replace("@IdRol", dicRol["idRol"].ToString())
+                                    .Replace("@IdUsuario", data["idUsuario"].ToString());
+
+            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+
+            int IdUsuario;
+            int.TryParse(data["idUsuario"].ToString(), out IdUsuario);
+
+            return IdUsuario;
+        }
+
+        [WebMethod]
+        public static string eliminarUsuario(string id)
+        {
+            string strQuery = "DELETE FROM usuarios WHERE idUsuario = @IdUsuario";
+
+            strQuery = strQuery.Replace("@IdUsuario", id);
+
+            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+            return "deleted";
+        }
+
+        [WebMethod]
+        public static List<Dictionary<string, object>> dameUsuariosID(string IdUsuario)
+        {
+            return getUsuariosRolId(IdUsuario);
+        }
+
+        public static List<Dictionary<string, object>> getUsuariosRolId(string IdUsuario)
+        {
+            string strQuery = "select * FROM usuariorol WHERE idUsuario = @IdUsuario";
+            strQuery = strQuery.Replace("@IdUsuario", IdUsuario);
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros para roles para el usuario");
+            }
+
+            List<Dictionary<string, object>> lstResult = new List<Dictionary<string, object>>();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                Dictionary<string, object> dirResult = new Dictionary<string, object>();
+                dirResult.Add("usuario", dr["usuario"]);
+                dirResult.Add("pass", dr["pass"]);
+                dirResult.Add("NombreUsuario", string.Empty);
+                dirResult.Add("correo", string.Empty);
+
+                lstResult.Add(dirResult);
+            }
+
+            return lstResult;
+        }
+
+        [WebMethod]
+        public static int altaEmpleado(Dictionary<string, object> data)
+        {
+            return insertaEmpleado(data);
+        }
+
+        public static int insertaEmpleado(Dictionary<string, object> data)
+        {
+            string strQuery = @"INSERT INTO empleado(nombreEmpleado, cargo, Activo)
+                VALUES('@NombreEmpleado', '@Cargo', @Activo); 
+                SELECT LAST_INSERT_ID();";
+
+            strQuery = strQuery.Replace("@NombreEmpleado", data["nombre"].ToString())
+                                    .Replace("@Cargo", data["cargo"].ToString())
+                                    .Replace("@Activo", "true" );
+
+            object objResult = Tools.DataSetHelper.ExecuteScalar(strQuery);
+
+            if (objResult != null)
+            {
+                return int.Parse(objResult.ToString());
+            }
+
             return -1;
         }
     }
