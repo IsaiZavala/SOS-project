@@ -83,10 +83,11 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
     }
     scope.agregarRamo= function()
     {
-        api.post("/adm/altaRamo", scope.ramo).then(function (data) {
-            console.log(data);
+        //api.post("/adm/altaRamo", scope.ramo)
+        api.post("/Forms/WebServiceAPI.aspx/altaRamo", JSON.stringify({'data' : scope.ramo})).then(function (data) {
+            // console.log(data);
             if (data.status == 200) {
-                scope.id = data.data;
+                scope.id = data.data.d;
                 alertas.aviso("Se a guardado exitosamente");
             }
         },

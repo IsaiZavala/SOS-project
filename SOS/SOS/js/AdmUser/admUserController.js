@@ -89,8 +89,9 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
 
         var conf = alertas.confirma("Seguro que desea Ramo?", "Se eliminara Ramo");
         $mdDialog.show(conf).then(function () {
-            api.get("/adm/eliminaRamo/" + id).then(function success(data) {
-                console.log(data);
+            //api.get("/adm/eliminaRamo/" + id)
+            api.post("/Forms/WebServiceAPI.aspx/eliminaRamo", JSON.stringify({ 'IdRamo': id })).then(function success(data) {
+                // console.log(data);
                 scope.id = data.data;
                 cargaRamos();
             })
@@ -105,15 +106,17 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
 
         var conf = alertas.confirma("Seguro que desea eliminar?", "Se eliminara Empleado");
         $mdDialog.show(conf).then(function () {
-            api.get("/adm/eliminaEmpleado/" + id).then(function success(data) {
-                console.log(data);
-                scope.id = data.data;
+            //api.get("/adm/eliminaEmpleado/" + id)
+            api.post("/Forms/WebServiceAPI.aspx/eliminaEmpleado", JSON.stringify({ 'strEmpleado': id }))
+                .then(function success(data) {
+                // console.log(data);
+                scope.id = data.data.d;
                 cargaEmpleados();
             })
 
         }, function () {
-            console.log("adios");
-            
+            // cuando no se da click en confirmar eliminacion
+            // console.log("adios");
         });
 
     }

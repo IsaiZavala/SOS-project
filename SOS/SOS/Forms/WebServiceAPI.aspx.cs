@@ -392,5 +392,54 @@ namespace SOS.Forms
 
             return -1;
         }
+
+        [WebMethod]
+        public static int eliminaEmpleado(string strEmpleado)
+        {
+            string strQuery = "update empleado SET activo=false WHERE idEmpleado = @IdEmpleado";
+            strQuery = strQuery.Replace("@IdEmpleado", strEmpleado);
+            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+
+            int IdEmpleado;
+            int.TryParse(strEmpleado, out IdEmpleado);
+            return IdEmpleado;
+        }
+
+        [WebMethod]
+        public static int altaRamo(Dictionary<string, object> data)
+        {
+            // insertaRamo
+            string strQuery = @"INSERT INTO ramo (nombreRamo, Activo) VALUES('@NombreRamo', @Activo);
+                                SELECT LAST_INSERT_ID();";
+
+            strQuery = strQuery.Replace("@NombreRamo", data["nombre"].ToString())
+                               .Replace("@Activo", "true");
+
+            object objResult = Tools.DataSetHelper.ExecuteScalar(strQuery);
+
+            if (objResult != null)
+            {
+                int.Parse(objResult.ToString());
+            }
+
+            return -1;
+        }
+
+        [WebMethod]
+        public static string eliminaRamo(int IdRamo)
+        {
+            return eliminarRamo(IdRamo);
+        }
+
+        public static string eliminarRamo(int IdRamo)
+        {
+            string strQuery = "update ramo SET activo = false WHERE idRamo = @IdRamo";
+            strQuery = strQuery.Replace("@IdRamo", IdRamo.ToString());
+
+            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+
+            return "deleted";
+        }
+
     }
 }
