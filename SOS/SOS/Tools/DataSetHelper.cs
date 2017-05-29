@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace SOS.Tools
 {
@@ -11,7 +12,8 @@ namespace SOS.Tools
     {
         public static string StringConnection
         {
-            get { return "Server=localhost;Port=3306;Database=ssifi;Uid=root;Pwd=;"; }
+            // "Server=localhost;Port=3306;Database=ssifi;Uid=root;Pwd=;"
+            get { return ConfigurationManager.ConnectionStrings["ConnectionString"].ToString(); }
         }
 
         public static DataSet ExecuteQuery(string strQuery)

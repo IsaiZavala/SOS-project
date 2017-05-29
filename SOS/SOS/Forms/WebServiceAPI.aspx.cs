@@ -267,7 +267,7 @@ namespace SOS.Forms
         [WebMethod]
         public static int altaUsuario(Dictionary<string, object> data)
         {
-            if (string.IsNullOrEmpty(data["idUsuario"].ToString()))
+            if (data["idUsuario"] == null)
             {
                 return insertaUsuario(data);
             }
@@ -439,6 +439,77 @@ namespace SOS.Forms
             Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
 
             return "deleted";
+        }
+
+        [WebMethod]
+        public static List<Dictionary<string,object>> buzonSOS(Dictionary<string, object> data)
+        {
+            int bandera = int.Parse(data["bandera"].ToString());
+            int IdRol = int.Parse(data["idRol"].ToString());
+            string strUsuario = data["idUsuario"].ToString();
+            string strQuery = string.Empty;
+
+            switch (IdRol)
+            {
+                case 1:
+                    switch (bandera)
+                    {
+                        case 1:
+                            strQuery = "Select * from infoSOS where IdEstado IN (1,2,3,4)";
+                        break;
+                        case 2:
+                            strQuery = "Select * from infoSOS where IdEstado = 5";
+                        break;
+                        case 3:
+                            strQuery = "Select * from infoSOS where IdEstado = 6";
+                        break;
+                    }
+                break;
+                case 2:
+                    switch (bandera) // indica que tipo de id estado quiere traer
+                    {
+                        case 1:
+                            strQuery = "Select * from infoSOS where IdEstado IN (1,2,3,4) and idUsuario = " + strUsuario;
+                        break;
+                        case 2:
+                            strQuery = "Select * from infoSOS where IdEstado = 5 and idUsuario = " + strUsuario;
+                        break;
+                        case 3:
+                            strQuery = "Select * from infoSOS where IdEstado = 6 and idUsuario = " + strUsuario;
+                        break;
+                    }
+                break;
+            }
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros de buzon para el usuario");
+            }
+
+            List<Dictionary<string, object>> lstResult = new List<Dictionary<string, object>>();
+
+            foreach (DataRow itemRow in ds.Tables[0].Rows)
+            {
+                Dictionary<string, object> dicResult = new Dictionary<string, object>();
+
+                dicResult.Add("idDetalleSOS", itemRow["idDetalleSOS"]);
+                dicResult.Add("idSOS", itemRow["idSOS"]);
+                DateTime fecha;
+                DateTime.TryParse(itemRow["fecha"].ToString(), out fecha);
+                dicResult.Add("fecha", fecha.ToString("dd/MM/yyyy"));
+                dicResult.Add("nombreRamo", itemRow["nombreRamo"]);
+                dicResult.Add("Nombre", itemRow["prioridad"]);
+                dicResult.Add("color", itemRow["color"]);
+                dicResult.Add("asunto", itemRow["asunto"]);
+                dicResult.Add("IdEstado", itemRow["IdEstado"]);
+
+                lstResult.Add(dicResult);
+            }
+
+            
+            return lstResult;
         }
 
     }
