@@ -91,6 +91,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="js\debug.log" />
+    <None Include="Properties\PublishProfiles\SOS-desarrollador.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -155,6 +156,7 @@
     <Content Include="prueba.html" />
     <Content Include="rosel.html" />
     <Content Include="scriptGrafica.js" />
+    <Content Include="Services\WebServiceAPI.asmx" />
     <Content Include="tablaBuzon.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -169,7 +171,14 @@
       <DependentUpon>WebServiceAPI.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\WebServiceAPI.asmx.cs">
+      <DependentUpon>WebServiceAPI.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Tools\DataSetHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

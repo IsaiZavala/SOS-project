@@ -32,12 +32,12 @@
 
 
                 //sos.seccion = $filter('uppercase')(sos.seccion);
-                api.post("/Forms/WebServiceAPI.aspx/verificaUsuario", JSON.stringify({ 'data': data }))
+                api.post("/Services/WebServiceAPI.asmx/verificaUsuario", JSON.stringify({ 'data': data }))
                 // api.post("/login/verificaUsuario/", data)
                 
               
                 .then(function success(response) {
-
+                    console.log(response.data);
                     login.activated = false;
                     
                     

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo es utilizado por el proceso de paquete/publicación de nuestro proyecto Web. Puede personalizar el comportamiento de este proceso
+editando este archivo MSBuild. Para conocer más acerca de esto, visite http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA91Els7NjcUu1kO5CgdhncAAAAAACAAAAAAAQZgAAAAEAACAAAAD4CeZ/SiYHbqCyzMuEf3rvAMJvcXrUl8KaNZPMxKBl7wAAAAAOgAAAAAIAACAAAADrPQDPfpNu9DDgAX05QMdmtS01z3G0c2hGag//1jSZ1SAAAAAK2zAfGpln+WgW3j/YE/9eBLnDLDKx6eFX6kYOXikT5EAAAACS33h86wE4z984CKeO6Sdov7MgJqSd40U34esQy/Bc/Ct268HIvCj9UcZ763F9+VtJEQAK0alwnku6P14xJso1</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ftp-eu.Smarterasp.net/SOS</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="adminUser.html">
+      <publishTime>01/26/2017 16:31:36</publishTime>
+    </File>
+    <File Include="agregarUsuario.html">
+      <publishTime>01/26/2017 16:31:52</publishTime>
+    </File>
+    <File Include="altaSOS.html">
+      <publishTime>05/09/2017 22:49:02</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>06/15/2015 02:06:24</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.dll">
+      <publishTime>06/17/2016 18:29:10</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>06/18/2015 20:19:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/SOS.dll">
+      <publishTime>05/28/2017 16:47:44</publishTime>
+    </File>
+    <File Include="buzon.html">
+      <publishTime>01/26/2017 16:31:52</publishTime>
+    </File>
+    <File Include="Chart.js">
+      <publishTime>01/26/2017 16:31:54</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css">
+      <publishTime>01/26/2017 16:34:06</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css.map">
+      <publishTime>01/26/2017 16:34:06</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.min.css">
+      <publishTime>01/26/2017 16:34:08</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.min.css.map">
+      <publishTime>01/26/2017 16:34:08</publishTime>
+    </File>
+    <File Include="css/bootstrap.css">
+      <publishTime>01/26/2017 16:34:08</publishTime>
+    </File>
+    <File Include="css/bootstrap.css.map">
+      <publishTime>01/26/2017 16:34:10</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css">
+      <publishTime>01/26/2017 16:34:10</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css.map">
+      <publishTime>01/26/2017 16:34:12</publishTime>
+    </File>
+    <File Include="css/estilosDetalle.css">
+      <publishTime>01/26/2017 16:34:12</publishTime>
+    </File>
+    <File Include="css/estilosWeb.css">
+      <publishTime>01/26/2017 16:34:12</publishTime>
+    </File>
+    <File Include="css/styleAlta.css">
+      <publishTime>01/26/2017 16:34:12</publishTime>
+    </File>
+    <File Include="css/styleDet.css">
+      <publishTime>01/26/2017 16:34:12</publishTime>
+    </File>
+    <File Include="css/styleOT.css">
+      <publishTime>01/26/2017 16:34:14</publishTime>
+    </File>
+    <File Include="detalleSOS.html">
+      <publishTime>01/26/2017 16:31:54</publishTime>
+    </File>
+    <File Include="diagramaSOS.html">
+      <publishTime>01/26/2017 16:31:54</publishTime>
+    </File>
+    <File Include="encuestaSatisfaccion2.html">
+      <publishTime>01/26/2017 16:31:54</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/26/2017 16:34:14</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/26/2017 16:34:16</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/26/2017 16:34:14</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/26/2017 16:34:16</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>01/26/2017 16:34:16</publishTime>
+    </File>
+    <File Include="Forms/WebServiceAPI.aspx">
+      <publishTime>05/09/2017 16:08:37</publishTime>
+    </File>
+    <File Include="graficandoENCUESTA.html">
+      <publishTime>01/26/2017 16:31:54</publishTime>
+    </File>
+    <File Include="img/darkcover.png">
+      <publishTime>01/26/2017 16:34:16</publishTime>
+    </File>
+    <File Include="img/diagramaSOS.png">
+      <publishTime>01/26/2017 16:34:16</publishTime>
+    </File>
+    <File Include="img/dos.JPG">
+      <publishTime>01/26/2017 16:39:04</publishTime>
+    </File>
+    <File Include="img/dosF.JPG">
+      <publishTime>01/26/2017 16:34:16</publishTime>
+    </File>
+    <File Include="img/finalTaming.png">
+      <publishTime>01/26/2017 16:34:16</publishTime>
+    </File>
+    <File Include="img/flujoSOS.png">
+      <publishTime>01/26/2017 16:34:20</publishTime>
+    </File>
+    <File Include="img/g ssjb.jpg">
+      <publishTime>01/26/2017 16:34:22</publishTime>
+    </File>
+    <File Include="img/header.png">
+      <publishTime>01/26/2017 16:34:22</publishTime>
+    </File>
+    <File Include="img/ING_UASLP.png">
+      <publishTime>01/26/2017 16:34:22</publishTime>
+    </File>
+    <File Include="img/t ssjb.png">
+      <publishTime>01/26/2017 16:34:24</publishTime>
+    </File>
+    <File Include="img/tres.JPG">
+      <publishTime>01/26/2017 16:39:10</publishTime>
+    </File>
+    <File Include="img/tresF.JPG">
+      <publishTime>01/26/2017 16:34:24</publishTime>
+    </File>
+    <File Include="img/UASLP.png">
+      <publishTime>01/26/2017 16:34:24</publishTime>
+    </File>
+    <File Include="img/uno.JPG">
+      <publishTime>01/26/2017 16:39:14</publishTime>
+    </File>
+    <File Include="img/unoF.JPG">
+      <publishTime>01/26/2017 16:34:24</publishTime>
+    </File>
+    <File Include="img/v ssjb.jpg">
+      <publishTime>01/26/2017 16:34:24</publishTime>
+    </File>
+    <File Include="index3.html">
+      <publishTime>03/08/2017 21:06:13</publishTime>
+    </File>
+    <File Include="js/AdmUser/admUserController.js">
+      <publishTime>05/23/2017 22:44:07</publishTime>
+    </File>
+    <File Include="js/AdmUser/agregarUsuario/agregarUsuarioController.js">
+      <publishTime>05/23/2017 22:43:59</publishTime>
+    </File>
+    <File Include="js/AltaSOS/sosController.js">
+      <publishTime>05/10/2017 19:29:54</publishTime>
+    </File>
+    <File Include="js/app.js">
+      <publishTime>05/21/2017 23:55:54</publishTime>
+    </File>
+    <File Include="js/bootstrap.js">
+      <publishTime>01/26/2017 16:34:28</publishTime>
+    </File>
+    <File Include="js/bootstrap.min.js">
+      <publishTime>01/26/2017 16:34:28</publishTime>
+    </File>
+    <File Include="js/Buzon/buzonController.js">
+      <publishTime>05/23/2017 23:49:33</publishTime>
+    </File>
+    <File Include="js/Buzon/buzonDirective.js">
+      <publishTime>01/26/2017 16:35:04</publishTime>
+    </File>
+    <File Include="js/Buzon/buzonModule.js">
+      <publishTime>01/26/2017 16:35:04</publishTime>
+    </File>
+    <File Include="js/debug.log">
+      <publishTime>01/26/2017 16:34:28</publishTime>
+    </File>
+    <File Include="js/Detalle/detalleController.js">
+      <publishTime>01/26/2017 16:35:04</publishTime>
+    </File>
+    <File Include="js/Encuesta/encuestaController.js">
+      <publishTime>01/26/2017 16:35:04</publishTime>
+    </File>
+    <File Include="js/jquery.js">
+      <publishTime>01/26/2017 16:34:28</publishTime>
+    </File>
+    <File Include="js/login/loginCONTROLLER.js">
+      <publishTime>05/12/2017 18:50:35</publishTime>
+    </File>
+    <File Include="js/npm.js">
+      <publishTime>01/26/2017 16:34:28</publishTime>
+    </File>
+    <File Include="js/OrdenTrabajo/woController.js">
+      <publishTime>01/26/2017 16:35:04</publishTime>
+    </File>
+    <File Include="js/routes.js">
+      <publishTime>05/09/2017 18:09:10</publishTime>
+    </File>
+    <File Include="js/services/alertas.js">
+      <publishTime>01/26/2017 16:35:04</publishTime>
+    </File>
+    <File Include="js/services/api.js">
+      <publishTime>01/26/2017 16:35:04</publishTime>
+    </File>
+    <File Include="js/services/Auth.js">
+      <publishTime>05/09/2017 17:15:27</publishTime>
+    </File>
+    <File Include="js/services/dataCombos.js">
+      <publishTime>01/26/2017 16:35:10</publishTime>
+    </File>
+    <File Include="js/ui-bootstrap-tpls-2.1.4.min.js">
+      <publishTime>01/26/2017 16:34:30</publishTime>
+    </File>
+    <File Include="login.html">
+      <publishTime>01/26/2017 16:31:54</publishTime>
+    </File>
+    <File Include="ordenTrabajo.html">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>05/09/2017 16:06:47</publishTime>
+    </File>
+    <File Include="pagina1.html">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="pagina2.html">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="pagina3.html">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="proeba.html">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="prueba.html">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="rosel.html">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="scriptGrafica.js">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="tablaBuzon.html">
+      <publishTime>01/26/2017 16:32:02</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/28/2017 16:47:53</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -218,12 +218,13 @@ angular.module('buzon')
         var datoss = { bandera: band, idRol: parseInt(idRol), idUsuario: parseInt(idUsu) };
 
     //    usuario.consulta();
-        api.post("/buzon/sos", datoss)
+        //api.post("/buzon/sos", datoss)
+        api.post("/Forms/WebServiceAPI.aspx/buzonSOS", JSON.stringify({ 'data': datoss}))
         .then(function succ(res){
                     scope.loadActivated = false;
 
-          //  console.log(res.data);
-            scope.arraySOS = res.data;
+            console.log(res.data);
+            scope.arraySOS = res.data.d;
         }, function err(res){
             scope.loadActivated = false;
             console.log(res.data); 

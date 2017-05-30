@@ -11,7 +11,7 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
     function cargaUsuarios()
     {
         // api.get("/adm/dameUsuarios")
-        api.post("/Forms/WebServiceAPI.aspx/dameUsuarios", null)
+        api.post("/Services/WebServiceAPI.asmx/dameUsuarios", null)
             .then(function success(data) {
                 // console.log(data);
                 scope.usuarios = data.data.d;
@@ -24,7 +24,7 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
     cargaEmpleados();
     function cargaEmpleados() {
         // api.get("/adm/dameEmpleados")
-        api.post("/Forms/WebServiceAPI.aspx/dameEmpleados", null)
+        api.post("/Services/WebServiceAPI.asmx/dameEmpleados", null)
             .then(function success(data) {
             // console.log(data);
             scope.empleados = data.data.d;
@@ -36,7 +36,7 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
     cargaRamos();
     function cargaRamos() {
         // api.get("/adm/dameRamos")
-        api.post("/Forms/WebServiceAPI.aspx/dameRamos", null)
+        api.post("/Services/WebServiceAPI.asmx/dameRamos", null)
             .then(function success(data) {
             // console.log(data);
             scope.ramos = data.data.d;
@@ -72,7 +72,7 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
         var conf = alertas.confirma("Seguro que desea eliminar?", "Se eliminara usuario");
         $mdDialog.show(conf).then(function () {
             //api.get("/adm/eliminaUsuario/" + id)
-            api.post("/Forms/WebServiceAPI.aspx/eliminarUsuario", JSON.stringify({ 'id': id }))
+            api.post("/Services/WebServiceAPI.asmx/eliminarUsuario", JSON.stringify({ 'id': id }))
                 .then(function success(data) {
                 scope.id = data.data.d;
                 cargaUsuarios();
@@ -90,7 +90,7 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
         var conf = alertas.confirma("Seguro que desea Ramo?", "Se eliminara Ramo");
         $mdDialog.show(conf).then(function () {
             //api.get("/adm/eliminaRamo/" + id)
-            api.post("/Forms/WebServiceAPI.aspx/eliminaRamo", JSON.stringify({ 'IdRamo': id })).then(function success(data) {
+            api.post("/Services/WebServiceAPI.asmx/eliminaRamo", JSON.stringify({ 'IdRamo': id })).then(function success(data) {
                 // console.log(data);
                 scope.id = data.data;
                 cargaRamos();
@@ -107,7 +107,7 @@ app.controller("admUserController", function (alertas,api, $mdDialog) {
         var conf = alertas.confirma("Seguro que desea eliminar?", "Se eliminara Empleado");
         $mdDialog.show(conf).then(function () {
             //api.get("/adm/eliminaEmpleado/" + id)
-            api.post("/Forms/WebServiceAPI.aspx/eliminaEmpleado", JSON.stringify({ 'strEmpleado': id }))
+            api.post("/Services/WebServiceAPI.asmx/eliminaEmpleado", JSON.stringify({ 'strEmpleado': id }))
                 .then(function success(data) {
                 // console.log(data);
                 scope.id = data.data.d;

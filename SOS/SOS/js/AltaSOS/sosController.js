@@ -119,17 +119,17 @@
                                 sos.enviaActivated = true;
                                 llenaS0S();
                                 // api.post("/alta/SOS",eseoese)
-                                api.post("/Forms/WebServiceAPI.aspx/SOS", JSON.stringify({ 'data': eseoese }))
+                                api.post("/Services/WebServiceAPI.asmx/SOS", JSON.stringify({ 'data': eseoese }))
                                 .then(function sucess(response)
                                 {
                                     // console.log(response.data);
                                     sos.enviaActivated = false;
-                                    sos.ordenID = response.data.d.insertId;
+                                    sos.ordenID = response.data.d;
                                     //scope.orden = response.data.insertId;
                                     $("#myModal3").modal();
                                     limpiaCampos();
                                 }, function myError(response) {
-                                    // console.log(response.data);
+                                    console.log(response.data);
                                     sos.ErrorMessage = response.data.Message;
                                     sos.enviaActivated = false;
                                     });
@@ -156,14 +156,14 @@
                // console.log("bien");
                sos.seccion = $filter('uppercase')(sos.seccion);
                // api.get("/alta/verificaCadena/" + sos.seccion)
-               api.post("/Forms/WebServiceAPI.aspx/verificaCadena", JSON.stringify({ 'data': sos.seccion }))
+               api.post("/Services/WebServiceAPI.asmx/verificaCadena", JSON.stringify({ 'data': sos.seccion }))
                // api.get('/posts')
                 .then(function success(response) {
                    sos.validacionCode.aparece = true;
-                    console.log(response.data);
+                    // console.log(response.data);
                     sos.validacionCode.server = true;
                     
-                    if (response.data.d.cadenaregresada != null){
+                    if (response.data.d != null){
                          sos.activated = false;
                          sos.validacionCode.valido = true;
 
