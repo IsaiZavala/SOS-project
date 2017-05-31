@@ -35,6 +35,12 @@ namespace SOS.Services
             public string idRol;
             public string idUsuario;
             public string NombreUsuario;
+            public string pass;
+            public string usuario;
+            public string nombre;
+            public string correo;
+
+            public RolesClass rol;
         }
 
         [WebMethod]
@@ -98,6 +104,7 @@ namespace SOS.Services
 
         public class SOSClass
         {
+            public string idSOS;
             public string fechaReporte;
             public string claveCadena;
             public string descripcion;
@@ -109,6 +116,8 @@ namespace SOS.Services
             public string hraDispF2;
             public string tel;
             public string cel;
+            public string fecha;
+            public string idStatus;
 
             public class informante
             {
@@ -167,18 +176,28 @@ namespace SOS.Services
             {
                 int.Parse(resultID.ToString());
             }
-            
+
             return -1;
         }
 
+        public class UsuarioRolClass
+        {
+            public string idUsuario;
+            public string usuario;
+            public string pass;
+            public string descripcion;
+            public string correo;
+            public string NombreUsuario;
+        }
+
         [WebMethod]
-        public static List<Dictionary<string, object>> dameUsuarios()
+        public List<UsuarioRolClass> dameUsuarios()
         {
             // method adapted from administracion/dameUsuarios
             return getUsuariosRol();
         }
 
-        public static List<Dictionary<string, object>> getUsuariosRol()
+        public List<UsuarioRolClass> getUsuariosRol()
         {
             // method adapted from models/usuarios.js/getUsuariosRol
             string strQuery = "SELECT * FROM usuarioRol";
@@ -190,30 +209,38 @@ namespace SOS.Services
                 throw new Exception("No se encontraron registros de usuarioRol");
             }
 
-            List<Dictionary<string, object>> lstDic = new List<Dictionary<string, object>>();
+            List<UsuarioRolClass> lstUsuarioRolClass = new List<UsuarioRolClass>();
 
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                Dictionary<string, object> dicResultado = new Dictionary<string, object>();
-                dicResultado.Add("idUsuario", dr["idUsuario"]);
-                dicResultado.Add("usuario", dr["usuario"]);
-                dicResultado.Add("pass", dr["pass"]);
+                UsuarioRolClass usuarioRolClass = new UsuarioRolClass();
+                usuarioRolClass.idUsuario = dr["idUsuario"].ToString();
+                usuarioRolClass.usuario = dr["usuario"].ToString();
+                usuarioRolClass.pass = dr["pass"].ToString();
                 // dicResultado.Add("idRol", dr["idRol"]);
                 // dicResultado.Add("tipoROl", dr["tipoROl"]);
-                dicResultado.Add("descripcion", dr["descripcion"]);
-                lstDic.Add(dicResultado);
+                usuarioRolClass.descripcion = dr["descripcion"].ToString();
+                lstUsuarioRolClass.Add(usuarioRolClass);
             }
 
-            return lstDic;
+            return lstUsuarioRolClass;
+        }
+
+        public class EmpleadoClass
+        {
+            public string idEmpleado;
+            public string nombreEmpleado;
+            public string cargo;
+            public string nombre;
         }
 
         [WebMethod]
-        public static List<Dictionary<string, object>> dameEmpleados()
+        public List<EmpleadoClass> dameEmpleados()
         {
             return getEmpleado();
         }
 
-        public static List<Dictionary<string, object>> getEmpleado()
+        public List<EmpleadoClass> getEmpleado()
         {
             string strQuery = "SELECT * FROM empleado WHERE activo=true";
             DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
@@ -223,28 +250,35 @@ namespace SOS.Services
                 throw new Exception("No se encontraron registros en empleado");
             }
 
-            List<Dictionary<string, object>> lstResultados = new List<Dictionary<string, object>>();
+            List<EmpleadoClass> lstEmpleado = new List<EmpleadoClass>();
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                Dictionary<string, object> dirResult = new Dictionary<string, object>();
-                dirResult.Add("idEmpleado", dr["idEmpleado"]);
-                dirResult.Add("nombreEmpleado", dr["nombreEmpleado"]);
-                dirResult.Add("cargo", dr["cargo"]);
+                EmpleadoClass empleadoClass = new EmpleadoClass();
+                empleadoClass.idEmpleado = dr["idEmpleado"].ToString();
+                empleadoClass.nombreEmpleado = dr["nombreEmpleado"].ToString();
+                empleadoClass.cargo = dr["cargo"].ToString();
                 // dirResult.Add("Activo", dr["cargo"]);
 
-                lstResultados.Add(dirResult);
+                lstEmpleado.Add(empleadoClass);
             }
 
-            return lstResultados;
+            return lstEmpleado;
+        }
+
+        public class RamoClass
+        {
+            public string idRamo;
+            public string nombreRamo;
+            public string nombre;
         }
 
         [WebMethod]
-        public static List<Dictionary<string, object>> dameRamos()
+        public List<RamoClass> dameRamos()
         {
             return getRamo();
         }
 
-        public static List<Dictionary<string, object>> getRamo()
+        public List<RamoClass> getRamo()
         {
             string strQuery = "SELECT * FROM ramo WHERE activo=true";
             DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
@@ -254,27 +288,34 @@ namespace SOS.Services
                 throw new Exception("No se encontraron registros en ramo");
             }
 
-            List<Dictionary<string, object>> lstResult = new List<Dictionary<string, object>>();
+            List<RamoClass> lstRamos = new List<RamoClass>();
 
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                Dictionary<string, object> dirResult = new Dictionary<string, object>();
-                dirResult.Add("idRamo", dr["idRamo"]);
-                dirResult.Add("nombreRamo", dr["nombreRamo"]);
+                RamoClass ramoClass = new RamoClass();
+                ramoClass.idRamo = dr["idRamo"].ToString();
+                ramoClass.nombreRamo = dr["nombreRamo"].ToString();
                 // dirResult.Add("Activo", dr["Activo"]);
-                lstResult.Add(dirResult);
+                lstRamos.Add(ramoClass);
             }
 
-            return lstResult;
+            return lstRamos;
+        }
+
+        public class RolesClass
+        {
+            public string idRol;
+            public string tipoROl;
+            public string descripcion;
         }
 
         [WebMethod]
-        public static List<Dictionary<string, object>> dameRoles()
+        public List<RolesClass> dameRoles()
         {
             return getModelos();
         }
 
-        public static List<Dictionary<string, object>> getModelos()
+        public List<RolesClass> getModelos()
         {
             string strQuery = "Select * FROM roles";
             DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
@@ -284,24 +325,24 @@ namespace SOS.Services
                 throw new Exception("No se encontraron registros para roles");
             }
 
-            List<Dictionary<string, object>> lstResult = new List<Dictionary<string, object>>();
+            List<RolesClass> lstRolesClass = new List<RolesClass>();
 
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                Dictionary<string, object> dirResult = new Dictionary<string, object>();
-                dirResult.Add("idRol", dr["idRol"]);
-                dirResult.Add("tipoROl", dr["tipoROl"]);
-                dirResult.Add("descripcion", dr["descripcion"]);
-                lstResult.Add(dirResult);
+                RolesClass rolesClass = new RolesClass();
+                rolesClass.idRol = dr["idRol"].ToString();
+                rolesClass.tipoROl = dr["tipoROl"].ToString();
+                rolesClass.descripcion = dr["descripcion"].ToString();
+                lstRolesClass.Add(rolesClass);
             }
 
-            return lstResult;
+            return lstRolesClass;
         }
 
         [WebMethod]
-        public static int altaUsuario(Dictionary<string, object> data)
+        public int altaUsuario(UsuarioClass data)
         {
-            if (data["idUsuario"] == null)
+            if (data.idUsuario == null)
             {
                 return insertaUsuario(data);
             }
@@ -311,17 +352,17 @@ namespace SOS.Services
             }
         }
 
-        public static int insertaUsuario(Dictionary<string, object> data)
+        public int insertaUsuario(UsuarioClass data)
         {
             string strQuery = @"INSERT INTO usuarios(usuario, pass, idRol) VALUES('@usuario', '@pass', @idRol);
                                 SELECT LAST_INSERT_ID();";
 
-            strQuery = strQuery.Replace("@usuario", data["usuario"].ToString());
-            strQuery = strQuery.Replace("@pass", data["pass"].ToString());
+            strQuery = strQuery.Replace("@usuario", data.usuario);
+            strQuery = strQuery.Replace("@pass", data.pass);
 
-            Dictionary<string, object> dicRol = data["rol"] as Dictionary<string, object>;
+            RolesClass dicRol = data.rol as RolesClass;
 
-            strQuery = strQuery.Replace("@idRol", dicRol["idRol"].ToString());
+            strQuery = strQuery.Replace("@idRol", dicRol.idRol);
 
             object objResult = Tools.DataSetHelper.ExecuteScalar(strQuery);
 
@@ -335,30 +376,30 @@ namespace SOS.Services
             return -1;
         }
 
-        public static int modificaUsuario(Dictionary<string, object> data)
+        public int modificaUsuario(UsuarioClass data)
         {
-            Dictionary<string, object> dicRol = data["rol"] as Dictionary<string, object>;
+            RolesClass dicRol = data.rol as RolesClass;
 
             string strQuery = @"UPDATE usuarios SET usuario = '@Usuario', pass = '@Pass', idRol = @IdRol
                      /*, NombreUsuario = '@NombreUsuario', correo = '@Correo' */ WHERE idUsuario = @IdUsuario";
 
-            strQuery = strQuery.Replace("@Usuario", data["usuario"].ToString())
-                                    .Replace("@Pass", data["pass"].ToString())
-                                    .Replace("@NombreUsuario", data["nombre"].ToString())
-                                    .Replace("@Correo", data["correo"].ToString())
-                                    .Replace("@IdRol", dicRol["idRol"].ToString())
-                                    .Replace("@IdUsuario", data["idUsuario"].ToString());
+            strQuery = strQuery.Replace("@Usuario", data.usuario)
+                                    .Replace("@Pass", data.pass)
+                                    .Replace("@NombreUsuario", data.nombre)
+                                    .Replace("@Correo", data.correo)
+                                    .Replace("@IdRol", dicRol.idRol)
+                                    .Replace("@IdUsuario", data.idUsuario);
 
             Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
 
             int IdUsuario;
-            int.TryParse(data["idUsuario"].ToString(), out IdUsuario);
+            int.TryParse(data.idUsuario, out IdUsuario);
 
             return IdUsuario;
         }
 
         [WebMethod]
-        public static string eliminarUsuario(string id)
+        public string eliminarUsuario(string id)
         {
             string strQuery = "DELETE FROM usuarios WHERE idUsuario = @IdUsuario";
 
@@ -369,12 +410,12 @@ namespace SOS.Services
         }
 
         [WebMethod]
-        public static List<Dictionary<string, object>> dameUsuariosID(string IdUsuario)
+        public List<UsuarioRolClass> dameUsuariosID(string IdUsuario)
         {
             return getUsuariosRolId(IdUsuario);
         }
 
-        public static List<Dictionary<string, object>> getUsuariosRolId(string IdUsuario)
+        public List<UsuarioRolClass> getUsuariosRolId(string IdUsuario)
         {
             string strQuery = "select * FROM usuariorol WHERE idUsuario = @IdUsuario";
             strQuery = strQuery.Replace("@IdUsuario", IdUsuario);
@@ -386,35 +427,35 @@ namespace SOS.Services
                 throw new Exception("No se encontraron registros para roles para el usuario");
             }
 
-            List<Dictionary<string, object>> lstResult = new List<Dictionary<string, object>>();
+            List<UsuarioRolClass> lstUsuarioRolClass = new List<UsuarioRolClass>();
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                Dictionary<string, object> dirResult = new Dictionary<string, object>();
-                dirResult.Add("usuario", dr["usuario"]);
-                dirResult.Add("pass", dr["pass"]);
-                dirResult.Add("NombreUsuario", string.Empty);
-                dirResult.Add("correo", string.Empty);
+                UsuarioRolClass usuarioRolClass = new UsuarioRolClass();
+                usuarioRolClass.usuario = dr["usuario"].ToString();
+                usuarioRolClass.pass = dr["pass"].ToString();
+                usuarioRolClass.NombreUsuario = string.Empty;
+                usuarioRolClass.correo = string.Empty;
 
-                lstResult.Add(dirResult);
+                lstUsuarioRolClass.Add(usuarioRolClass);
             }
 
-            return lstResult;
+            return lstUsuarioRolClass;
         }
 
         [WebMethod]
-        public static int altaEmpleado(Dictionary<string, object> data)
+        public int altaEmpleado(EmpleadoClass data)
         {
             return insertaEmpleado(data);
         }
 
-        public static int insertaEmpleado(Dictionary<string, object> data)
+        public int insertaEmpleado(EmpleadoClass data)
         {
             string strQuery = @"INSERT INTO empleado(nombreEmpleado, cargo, Activo)
                 VALUES('@NombreEmpleado', '@Cargo', @Activo); 
                 SELECT LAST_INSERT_ID();";
 
-            strQuery = strQuery.Replace("@NombreEmpleado", data["nombre"].ToString())
-                                    .Replace("@Cargo", data["cargo"].ToString())
+            strQuery = strQuery.Replace("@NombreEmpleado", data.nombre)
+                                    .Replace("@Cargo", data.cargo)
                                     .Replace("@Activo", "true");
 
             object objResult = Tools.DataSetHelper.ExecuteScalar(strQuery);
@@ -428,7 +469,7 @@ namespace SOS.Services
         }
 
         [WebMethod]
-        public static int eliminaEmpleado(string strEmpleado)
+        public int eliminaEmpleado(string strEmpleado)
         {
             string strQuery = "update empleado SET activo=false WHERE idEmpleado = @IdEmpleado";
             strQuery = strQuery.Replace("@IdEmpleado", strEmpleado);
@@ -440,13 +481,13 @@ namespace SOS.Services
         }
 
         [WebMethod]
-        public static int altaRamo(Dictionary<string, object> data)
+        public int altaRamo(RamoClass data)
         {
             // insertaRamo
             string strQuery = @"INSERT INTO ramo (nombreRamo, Activo) VALUES('@NombreRamo', @Activo);
                                 SELECT LAST_INSERT_ID();";
 
-            strQuery = strQuery.Replace("@NombreRamo", data["nombre"].ToString())
+            strQuery = strQuery.Replace("@NombreRamo", data.nombre)
                                .Replace("@Activo", "true");
 
             object objResult = Tools.DataSetHelper.ExecuteScalar(strQuery);
@@ -460,12 +501,12 @@ namespace SOS.Services
         }
 
         [WebMethod]
-        public static string eliminaRamo(int IdRamo)
+        public string eliminaRamo(int IdRamo)
         {
             return eliminarRamo(IdRamo);
         }
 
-        public static string eliminarRamo(int IdRamo)
+        public string eliminarRamo(int IdRamo)
         {
             string strQuery = "update ramo SET activo = false WHERE idRamo = @IdRamo";
             strQuery = strQuery.Replace("@IdRamo", IdRamo.ToString());
@@ -475,12 +516,29 @@ namespace SOS.Services
             return "deleted";
         }
 
-        [WebMethod]
-        public static List<Dictionary<string, object>> buzonSOS(Dictionary<string, object> data)
+        public class BuzonSOSClass
         {
-            int bandera = int.Parse(data["bandera"].ToString());
-            int IdRol = int.Parse(data["idRol"].ToString());
-            string strUsuario = data["idUsuario"].ToString();
+            public string bandera;
+            public string idRol;
+            public string idUsuario;
+            public string asunto;
+            public string color;
+            public string fecha;
+            public object idDetalleSOS;
+            public string idSOS;
+            public string nombreRamo;
+            public string prioridad;
+
+            public string IdEstado;
+            public string Nombre;
+        }
+
+        [WebMethod]
+        public List<BuzonSOSClass> buzonSOS(BuzonSOSClass data)
+        {
+            int bandera = int.Parse(data.bandera);
+            int IdRol = int.Parse(data.idRol);
+            string strUsuario = data.idUsuario;
             string strQuery = string.Empty;
 
             switch (IdRol)
@@ -519,31 +577,280 @@ namespace SOS.Services
 
             if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
             {
-                throw new Exception("No se encontraron registros de buzon para el usuario");
+                // throw new Exception("No se encontraron registros de buzon para el usuario");
+                return new List<BuzonSOSClass>();
             }
 
-            List<Dictionary<string, object>> lstResult = new List<Dictionary<string, object>>();
+            List<BuzonSOSClass> lstBuzonSOSClass = new List<BuzonSOSClass>();
 
             foreach (DataRow itemRow in ds.Tables[0].Rows)
             {
-                Dictionary<string, object> dicResult = new Dictionary<string, object>();
+                BuzonSOSClass buzonSOSClass = new BuzonSOSClass();
 
-                dicResult.Add("idDetalleSOS", itemRow["idDetalleSOS"]);
-                dicResult.Add("idSOS", itemRow["idSOS"]);
+                buzonSOSClass.idDetalleSOS = itemRow["idDetalleSOS"].ToString();
+                buzonSOSClass.idSOS = itemRow["idSOS"].ToString();
                 DateTime fecha;
                 DateTime.TryParse(itemRow["fecha"].ToString(), out fecha);
-                dicResult.Add("fecha", fecha.ToString("dd/MM/yyyy"));
-                dicResult.Add("nombreRamo", itemRow["nombreRamo"]);
-                dicResult.Add("Nombre", itemRow["prioridad"]);
-                dicResult.Add("color", itemRow["color"]);
-                dicResult.Add("asunto", itemRow["asunto"]);
-                dicResult.Add("IdEstado", itemRow["IdEstado"]);
+                buzonSOSClass.fecha = fecha.ToString("dd/MM/yyyy");
+                buzonSOSClass.nombreRamo = itemRow["nombreRamo"].ToString();
+                buzonSOSClass.Nombre = itemRow["Nombre"].ToString();
+                buzonSOSClass.prioridad = itemRow["prioridad"].ToString();
+                buzonSOSClass.color = itemRow["color"].ToString();
+                buzonSOSClass.asunto = itemRow["asunto"].ToString();
+                buzonSOSClass.IdEstado = itemRow["IdEstado"].ToString();
 
-                lstResult.Add(dicResult);
+                lstBuzonSOSClass.Add(buzonSOSClass);
             }
 
-
-            return lstResult;
+            return lstBuzonSOSClass;
         }
+
+
+        public class InfoDetalleClass
+        {
+            public string idDetalleSOS;
+            public string prioridad;
+            public string idPrioridad;
+            public string color;
+            public string nombreRamo;
+            public string idRamo;
+            public string tipoMantenimiento;
+            public string idTipoMant;
+            public string nombreEmpleado;
+            public string idEmpleado;
+            public string cargo;
+            public string comentarios;
+            public string IdSOS;
+        }
+
+        [WebMethod]
+        public List<InfoDetalleClass> GetDetalle(int IdSOS)
+        {
+            string strQuery = "Select * from infodetalle where  IdSOS = @IdSOS";
+            strQuery = strQuery.Replace("@IdSOS", "" + IdSOS);
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                // throw new Exception("No se encontraron registros para infodetalle");
+                return new List<InfoDetalleClass>();
+            }
+
+            List<InfoDetalleClass> lstInfoDetalle = new List<InfoDetalleClass>();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                InfoDetalleClass infoDetalle = new InfoDetalleClass();
+                infoDetalle.idDetalleSOS = dr["idDetalleSOS"].ToString();
+                infoDetalle.prioridad = dr["prioridad"].ToString();
+                infoDetalle.idPrioridad = dr["idPrioridad"].ToString();
+                infoDetalle.color = dr["color"].ToString();
+                infoDetalle.nombreRamo = dr["nombreRamo"].ToString();
+                infoDetalle.idRamo = dr["idRamo"].ToString();
+                infoDetalle.tipoMantenimiento = dr["tipoMantenimiento"].ToString();
+                infoDetalle.idTipoMant = dr["idTipoMant"].ToString();
+                infoDetalle.nombreEmpleado = dr["nombreEmpleado"].ToString();
+                infoDetalle.idEmpleado = dr["idEmpleado"].ToString();
+                infoDetalle.cargo = dr["cargo"].ToString();
+                infoDetalle.comentarios = dr["comentarios"].ToString();
+                infoDetalle.IdSOS = dr["IdSOS"].ToString();
+
+                lstInfoDetalle.Add(infoDetalle);
+            }
+
+            return lstInfoDetalle;
+        }
+
+        public class PrioridadClass
+        {
+            public string idPrioridad;
+            public string prioridad;
+            public string color;
+        }
+
+        [WebMethod]
+        public List<PrioridadClass> getPrioridad()
+        {
+            string strQuery = "SELECT * FROM prioridad";
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros para prioridad");
+            }
+
+            List<PrioridadClass> lstPrioridad = new List<PrioridadClass>();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                PrioridadClass prioridadClass = new PrioridadClass();
+                prioridadClass.idPrioridad = dr["idPrioridad"].ToString();
+                prioridadClass.prioridad = dr["prioridad"].ToString();
+                prioridadClass.color = dr["color"].ToString();
+
+                lstPrioridad.Add(prioridadClass);
+            }
+
+            return lstPrioridad;
+        }
+
+        public class EstadosSOSClass
+        {
+            public string IdEstado;
+            public string Nombre;
+        }
+
+        [WebMethod]
+        public List<EstadosSOSClass> getEstados()
+        {
+            string strQuery = "select * from estadosos";
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                throw new Exception("No se encontraron registros para estadosos");
+            }
+
+            List<EstadosSOSClass> lstEstadosSOS = new List<EstadosSOSClass>();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                EstadosSOSClass estadoSOS = new EstadosSOSClass();
+                estadoSOS.IdEstado = dr["IdEstado"].ToString();
+                estadoSOS.Nombre = dr["Nombre"].ToString();
+
+                lstEstadosSOS.Add(estadoSOS);
+            }
+
+            return lstEstadosSOS;
+        }
+
+        [WebMethod]
+        public List<SOSClass> getSOSID(int IdSOS)
+        {
+            string strQuery = "Select * from sos where idSOS = @IdSOS";
+            strQuery = strQuery.Replace("@IdSOS", "" + IdSOS);
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                return new List<SOSClass>();
+            }
+
+            List<SOSClass> lstSOSClass = new List<SOSClass>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                SOSClass sosClass = new SOSClass();
+                sosClass.idSOS = dr["idSOS"].ToString();
+                sosClass.claveCadena = dr["claveCadena"].ToString();
+                sosClass.fecha = dr["fecha"].ToString();
+                sosClass.idUsuario = dr["idUsuario"].ToString();
+                sosClass.descripcion = dr["descripcion"].ToString();
+                sosClass.idStatus = dr["idStatus"].ToString();
+                sosClass.cel = dr["cel"].ToString();
+                sosClass.tel = dr["tel"].ToString();
+                sosClass.asunto = dr["asunto"].ToString();
+                sosClass.hraDispI1 = dr["hraDispI1"].ToString();
+                sosClass.hraDispI2 = dr["hraDispI2"].ToString();
+                sosClass.hraDispF1 = dr["hraDispF1"].ToString();
+                sosClass.hraDispF2 = dr["hraDispF2"].ToString();
+
+                lstSOSClass.Add(sosClass);
+            }
+
+            return lstSOSClass;
+        }
+
+
+        public class TipoMantenimientoClass
+        {
+            public string idTipoMant;
+            public string tipoMantenimiento;
+        }
+
+
+        [WebMethod]
+        public List<TipoMantenimientoClass> tipoMantenimiento()
+        {
+            return getTipoMant();
+        }
+
+        public List<TipoMantenimientoClass> getTipoMant()
+        {
+            string strQuery = "SELECT * FROM tipomantenimiento";
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                return new List<TipoMantenimientoClass>();
+            }
+            
+            List<TipoMantenimientoClass> lstTipoMantenimiento = new List<TipoMantenimientoClass>();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                TipoMantenimientoClass tipoMantenimiento = new TipoMantenimientoClass();
+                tipoMantenimiento.idTipoMant = dr["idTipoMant"].ToString();
+                tipoMantenimiento.tipoMantenimiento = dr["tipoMantenimiento"].ToString();
+
+                lstTipoMantenimiento.Add(tipoMantenimiento);
+            }
+
+            return lstTipoMantenimiento;
+        }
+
+        public class OrdenTrabajoClass
+        {
+            public string idOT;
+            public string idSOS;
+            public string idDetalleSOS;
+            public string accion;
+            public string operario;
+            public string fecha;
+            public string hraIniOT;
+            public string instruccion;
+            public string hraAtencion;
+            public string reporte;
+        }
+
+        [WebMethod]
+        public List<OrdenTrabajoClass> ordenTrabajo(int IdSOS)
+        {
+            return getOTs(IdSOS);
+        }
+
+        public List<OrdenTrabajoClass> getOTs(int IdSOS)
+        {
+            string strQuery = "Select * from ordentrabajo where idSOS = @IdSOS";
+            strQuery = strQuery.Replace("@IdSOS", "" + IdSOS);
+
+            DataSet ds = Tools.DataSetHelper.ExecuteQuery(strQuery);
+
+            if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                return new List<OrdenTrabajoClass>();
+            }
+
+            List<OrdenTrabajoClass> lstOrdenTrabajo = new List<OrdenTrabajoClass>();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                OrdenTrabajoClass ordenTrabajo = new OrdenTrabajoClass();
+                ordenTrabajo.idOT = dr["idOT"].ToString();
+                ordenTrabajo.idSOS = dr["idSOS"].ToString();
+                ordenTrabajo.idDetalleSOS = dr["idDetalleSOS"].ToString();
+                ordenTrabajo.accion = dr["accion"].ToString();
+                ordenTrabajo.operario = dr["operario"].ToString();
+                ordenTrabajo.fecha = dr["fecha"].ToString();
+                ordenTrabajo.hraIniOT = dr["hraIniOT"].ToString();
+                ordenTrabajo.instruccion = dr["instruccion"].ToString();
+                ordenTrabajo.hraAtencion = dr["hraAtencion"].ToString();
+                ordenTrabajo.reporte = dr["reporte"].ToString();
+
+                lstOrdenTrabajo.Add(ordenTrabajo);
+            }
+
+            return lstOrdenTrabajo;
+        }
+
     }
 }

@@ -37,7 +37,7 @@
                 
               
                 .then(function success(response) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     login.activated = false;
                     
                     

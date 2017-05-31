@@ -156,7 +156,7 @@ angular.module('buzon')
     {
         dataCombos.obtenRamo()
           .then(function success(data) {
-            scope.ramo = data.data;
+            scope.ramo = data.data.d;
          }, function err(res){
             
         });
@@ -166,7 +166,7 @@ angular.module('buzon')
     {
         dataCombos.obtenPrioridad()
           .then(function succ(res){
-            scope.prioridad = res.data;
+            scope.prioridad = res.data.d;
         }, function err(res){
             
         });
@@ -178,7 +178,7 @@ angular.module('buzon')
         dataCombos.obtenEmpleados()
           .then(function succ(res){
           //   console.log(res.data);
-            scope.empleados = res.data;
+            scope.empleados = res.data.d;
             scope.selectedEmpleado = scope.empleados[0];
 
         }, function err(res){
@@ -193,7 +193,7 @@ angular.module('buzon')
         dataCombos.obtenEstados()
             .then(function succ(res){
          //console.log(res.data);
-            scope.estadosSOS = res.data;
+            scope.estadosSOS = res.data.d;
            scope.selectedStatus = scope.estadosSOS[0];
         }, function err(res){
           //console.log(res);
@@ -219,11 +219,11 @@ angular.module('buzon')
 
     //    usuario.consulta();
         //api.post("/buzon/sos", datoss)
-        api.post("/Forms/WebServiceAPI.aspx/buzonSOS", JSON.stringify({ 'data': datoss}))
+        api.post("/Services/WebServiceAPI.asmx/buzonSOS", JSON.stringify({ 'data': datoss}))
         .then(function succ(res){
                     scope.loadActivated = false;
 
-            console.log(res.data);
+            // console.log(res.data);
             scope.arraySOS = res.data.d;
         }, function err(res){
             scope.loadActivated = false;

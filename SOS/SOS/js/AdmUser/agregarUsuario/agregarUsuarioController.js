@@ -26,7 +26,7 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
         if(idU!=null)
         {
             //api.get("/adm/dameUsuariosID/" + idU)
-            api.post("/Forms/WebServiceAPI.aspx/dameUsuariosID", JSON.stringify({ 'IdUsuario' : idU})).then(function success(data) {
+            api.post("/Services/WebServiceAPI.asmx/dameUsuariosID", JSON.stringify({ 'IdUsuario' : idU})).then(function success(data) {
                 // console.log(data);
                 var usu = data.data.d[0];
                 scope.usuario.usuario= usu.usuario;
@@ -40,7 +40,7 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
     }
     function cargaModelos(){
         // api.get("/adm/dameRoles")
-        api.post("/Forms/WebServiceAPI.aspx/dameRoles", null)
+        api.post("/Services/WebServiceAPI.asmx/dameRoles", null)
             .then(function success(data) {
             // console.log(data);
             scope.roles = data.data.d;
@@ -56,8 +56,8 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
 
         
         // api.post("/adm/altaUsuario", scope.usuario)
-        api.post("/Forms/WebServiceAPI.aspx/altaUsuario", JSON.stringify({ 'data': scope.usuario })).then(function (data) {
-            console.log(data);
+        api.post("/Services/WebServiceAPI.asmx/altaUsuario", JSON.stringify({ 'data': scope.usuario })).then(function (data) {
+            // console.log(data);
             if (data.status == 200) {
                 scope.id = data.data.d;
                 alertas.aviso("Se a guardado exitosamente");
@@ -70,7 +70,7 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
     scope.agregarEmpleado = function ()
     {
         // api.post("/adm/altaEmpleado", scope.empleado)
-        api.post("/Forms/WebServiceAPI.aspx/altaEmpleado", JSON.stringify ({ 'data' : scope.empleado})).then(function (data) {
+        api.post("/Services/WebServiceAPI.asmx/altaEmpleado", JSON.stringify ({ 'data' : scope.empleado})).then(function (data) {
             console.log(data);
             if (data.status == 200) {
                 scope.id = data.data;
@@ -84,7 +84,7 @@ app.controller("agregarUsuarioController", function ($scope, api, alertas, idU, 
     scope.agregarRamo= function()
     {
         //api.post("/adm/altaRamo", scope.ramo)
-        api.post("/Forms/WebServiceAPI.aspx/altaRamo", JSON.stringify({'data' : scope.ramo})).then(function (data) {
+        api.post("/Services/WebServiceAPI.asmx/altaRamo", JSON.stringify({'data' : scope.ramo})).then(function (data) {
             // console.log(data);
             if (data.status == 200) {
                 scope.id = data.data.d;

@@ -113,11 +113,12 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
       })
     };
     
-    api.get("/detalle/SOS/" + $scope.detalle.idSOS).then(function success(data) 
+    //api.get("/detalle/SOS/" + $scope.detalle.idSOS)
+    api.post("/Services/WebServiceAPI.asmx/getSOSID", JSON.stringify({ 'IdSOS': $scope.detalle.idSOS })).then(function success(data)
     {  
-        console.log(data);
-        $scope.posts = data.data;
-        $scope.sos=data.data[0];
+        // console.log(data);
+        $scope.posts = data.data.d;
+        $scope.sos=data.data.d[0];
     })
     //--------------------------------------------------------------------------------------------//
     //------------------------------------------get  ramo-----------------------------------------//
@@ -129,8 +130,8 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
  
     dataCombos.obtenRamo()
         .then(function success(data) {
-            console.log(data);
-            $scope.ramo = data.data;
+            // console.log(data);
+            $scope.ramo = data.data.d;
          })
       
     
@@ -318,11 +319,12 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
                  },
                  template: '<md-dialog class="confirm"><div class="modal-header" style="background-color: #e0faea; text-aling:center;"><h4 class="modal-title">Solicitud de orden de trabajo</h4></div><div class="modal-body" style="background-color: #e0faea;"><p>Se a guardado exitosamente</p></div><div class="modal-footer" style="background-color: #e0faea;"><button type="button" class="btn btn-default" data-dismiss="modal" ng-click="dialogCtrl.click()">Aceptar</button></div></md-dialog>',
              })
-             api.get("/detalle/SOS/" + $scope.detalle.idSOS).then(function success(data) {
+             //api.get("/detalle/SOS/" + $scope.detalle.idSOS)
+             api.post("/Services/WebServiceAPI.asmx/getSOSID", JSON.stringify({ 'IdSOS': $scope.detalle.idSOS })).then(function success(data) {
 
-                 console.log(data);
-                 $scope.posts = data.data;
-                 $scope.sos = data.data[0];
+                 // console.log(data);
+                 $scope.posts = data.data.d;
+                 $scope.sos = data.data.d[0];
                  console.log('sos');
                  console.log($scope.sos);
              })
@@ -334,12 +336,12 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
     $scope.operadorOT ={operador:[], selected: {}};
     $scope.operadorSeleccionado = {};
    
-
-    api.get("/detalle/empleado").then(function success(data) {
-                    console.log(data);
-                    $scope.operador = data.data;
+    //api.get("/detalle/empleado")
+    api.post("/Services/WebServiceAPI.asmx/dameEmpleados", null).then(function success(data) {
+                    // console.log(data);
+                    $scope.operador = data.data.d;
                     $scope.operador.selected = '';
-                    $scope.operadorOT.operador = data.data;
+                    $scope.operadorOT.operador = data.data.d;
                     
                     //$scope.makeArr();
     })
@@ -367,39 +369,41 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
 
     dataCombos.obtenPrioridad()
         .then(function success(data) {
-        
-                    console.log(data);
-                    $scope.prioridad = data.data;
+            
+            // console.log(data);
+            $scope.prioridad = data.data.d;
 
-                    api.get("/detalle/detalle/" + $scope.detalle.idSOS).then(function success(data) {
-
-                        console.log(data);
+            // api.get("/detalle/detalle/" + $scope.detalle.idSOS).
+            api.post("/Services/WebServiceAPI.asmx/GetDetalle", JSON.stringify({ 'IdSOS': $scope.detalle.idSOS })).then(function success(data) {
+                
+                        // console.log(data);
                         if (data.status==200)
                         {
-                        var dat = data.data[0];
-                        //prioridad
-                        $scope.detalle.prioridadN = {};
-                        $scope.detalle.prioridadN.prioridad = dat.prioridad;
-                        $scope.detalle.prioridadN.color = dat.color;
-                        $scope.detalle.prioridadN.idPrioridad = dat.idPrioridad;
-                        //ramo
-                        $scope.detalle.ramoN = {};
-                        $scope.detalle.ramoN.nombreRamo = dat.nombreRamo;
-                        $scope.detalle.ramoN.idRamo = dat.idRamo;
-                        //empleado
-                        $scope.detalle.empleadoN = {};
-                        $scope.detalle.empleadoN.nombreEmpleado= dat.nombreEmpleado;
-                        $scope.detalle.empleadoN.idEmpleado = dat.idEmpleado;
-                        $scope.detalle.empleadoN.cargo = dat.cargo;
-                        //Tipo de mantenimiento
-                        $scope.detalle.tipomatenimientoN={};
-                        $scope.detalle.tipomatenimientoN.tipoMantenimiento = dat.tipoMantenimiento;
-                        $scope.detalle.tipomatenimientoN.idTipoMant = dat.idTipoMant;
+                            // console.log(data.data);
+                            var dat = data.data.d[0];
+                            //prioridad
+                            $scope.detalle.prioridadN = {};
+                            $scope.detalle.prioridadN.prioridad = dat.prioridad;
+                            $scope.detalle.prioridadN.color = dat.color;
+                            $scope.detalle.prioridadN.idPrioridad = dat.idPrioridad;
+                            //ramo
+                            $scope.detalle.ramoN = {};
+                            $scope.detalle.ramoN.nombreRamo = dat.nombreRamo;
+                            $scope.detalle.ramoN.idRamo = dat.idRamo;
+                            //empleado
+                            $scope.detalle.empleadoN = {};
+                            $scope.detalle.empleadoN.nombreEmpleado= dat.nombreEmpleado;
+                            $scope.detalle.empleadoN.idEmpleado = dat.idEmpleado;
+                            $scope.detalle.empleadoN.cargo = dat.cargo;
+                            //Tipo de mantenimiento
+                            $scope.detalle.tipomatenimientoN={};
+                            $scope.detalle.tipomatenimientoN.tipoMantenimiento = dat.tipoMantenimiento;
+                            $scope.detalle.tipomatenimientoN.idTipoMant = dat.idTipoMant;
 
-                        $scope.detalle.comentario = dat.comentarios;
-                        $scope.detalle.idSOS = dat.idDetalleSOS;
-                        $scope.sos.NombreUsuario = dat.NombreUsuario
-                        existe = true;
+                            $scope.detalle.comentario = dat.comentarios;
+                            $scope.detalle.idSOS = dat.idDetalleSOS;
+                            $scope.sos.NombreUsuario = dat.NombreUsuario
+                            existe = true;
                         } 
                     })
 
@@ -412,11 +416,13 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
     $scope.labelTipoM = "Introduzca un tipo de Mantenimiento";
     $scope.otroTipoM = "";
     
-    api.get("/detalle/tipoMantenimiento").then(function success(data) {
-        
-                    console.log(data);
-                     $scope.tipoMant = data.data;
-                 })
+    // api.get("/detalle/tipoMantenimiento")
+    api.post("/Services/WebServiceAPI.asmx/tipoMantenimiento", null)
+        .then(function success(data) {
+                    // console.log(data);
+                     $scope.tipoMant = data.data.d;
+        })
+
     $scope.compareMant = function() 
     {
         if($scope.tipoMantSel.tipoMantenimiento == "Otro")
@@ -492,10 +498,11 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
     var tabActual = {};
     
     //Obtener ordenes de trabajo de la BD
-    api.get("/detalle/ordenTrabajo/" + $scope.detalle.idSOS).then(function success(data) 
+    // api.get("/detalle/ordenTrabajo/" + $scope.detalle.idSOS)
+    api.post("/Services/WebServiceAPI.asmx/ordenTrabajo", JSON.stringify({ 'IdSOS': $scope.detalle.idSOS })).then(function success(data)
     {  
-        console.log(data);
-        $scope.tabs = data.data;
+        // console.log(data);
+        $scope.tabs = data.data.d;
     });
     
     $scope.$watch('selectedIndex', function(current, old){
