@@ -2,7 +2,7 @@
     'use strict';
     angular.module('app', ['ui.bootstrap', 'ngMaterial', 'ngRoute', 'buzon', 'detailApp', 'otApp', 'login', 'admUser', 'agregarUser', 'enc'])
 //    .constant("url", 'http://jsonplaceholder.typicode.com');
-    .constant("url", 'http://localhost:3222') // 'http://desarrollador-001-site1.itempurl.com/')
+    .constant("url", 'http://localhost:3222') // 'http://desarrollador-001-site1.itempurl.com')
    .run(function ($rootScope, $location, Auth, $window) //Auth
    {
        // la siguiente linea borra la session

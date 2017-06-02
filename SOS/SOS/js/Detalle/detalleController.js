@@ -73,9 +73,9 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
     $scope.detalle = {};
     inicializadetalle();
     inicializaSOS();
-    $scope.url = "http://localhost:3000/pdf/imprimeSOS/" + idCot;
-    $scope.urlOT = "http://localhost:3000/pdf/imprimeOT/";
-    $scope.urlLibera = "http://localhost:3000/pdf/imprimeLibera/" + idCot;
+    $scope.url = "http://localhost:3222/pdf/imprimeSOS/" + idCot;
+    $scope.urlOT = "http://localhost:3222/pdf/imprimeOT/";
+    $scope.urlLibera = "http://localhost:3222/pdf/imprimeLibera/" + idCot;
 
     function inicializadetalle()
     {
@@ -219,9 +219,10 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
                     {
                         if (!existe)
                         {
-                            api.post("/detalle/detalle", $scope.detalle)
+                            //api.post("/detalle/detalle", $scope.detalle)
+                            api.post("/Services/WebServiceAPI.asmx/GuardaOrdenDeServicio", JSON.stringify({ 'data': $scope.detalle }))
                                     .then(function sucess(response) {
-                                        console.log(response);
+                                        // console.log(response);
                                         alertas.aviso("Se a guardado exitosamente");
                                     });
                         }
@@ -305,9 +306,10 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
          $scope.sos.hraDispF1 = $filter('date')($scope.sos.hraDispF1, 'HH:mm:ss');
          $scope.sos.hraDispF2 = $filter('date')($scope.sos.hraDispF2, 'HH:mm:ss');
          $scope.bandMOD = false;
-         console.log($scope.sos);
+         // console.log($scope.sos);
          ///modSOS
-         api.post("/detalle/modSOS",$scope.sos).then(function success(data) {
+         // api.post("/detalle/modSOS", $scope.sos)
+         api.post("/Services/WebServiceAPI.asmx/modSOS", JSON.stringify({ 'data': $scope.sos })).then(function success(data) {
              $mdDialog.show({
                  autoWrap: true,
                  skipHide: true,
@@ -377,15 +379,11 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
             api.post("/Services/WebServiceAPI.asmx/GetDetalle", JSON.stringify({ 'IdSOS': $scope.detalle.idSOS })).then(function success(data) {
                 
                         // console.log(data);
-                        if (data.status==200)
+                        if (data.status == 200 && data.data.d.length > 0)
                         {
+                            existe = true;
                             // console.log(data.data);
                             var dat = data.data.d[0];
-                            //prioridad
-                            $scope.detalle.prioridadN = {};
-                            $scope.detalle.prioridadN.prioridad = dat.prioridad;
-                            $scope.detalle.prioridadN.color = dat.color;
-                            $scope.detalle.prioridadN.idPrioridad = dat.idPrioridad;
                             //ramo
                             $scope.detalle.ramoN = {};
                             $scope.detalle.ramoN.nombreRamo = dat.nombreRamo;
@@ -403,7 +401,12 @@ app.controller("detailController", function ($scope, $http, api, $mdDialog, $fil
                             $scope.detalle.comentario = dat.comentarios;
                             $scope.detalle.idSOS = dat.idDetalleSOS;
                             $scope.sos.NombreUsuario = dat.NombreUsuario
-                            existe = true;
+
+                            //prioridad
+                            $scope.detalle.prioridadN = {};
+                            $scope.detalle.prioridadN.prioridad = dat.prioridad;
+                            $scope.detalle.prioridadN.color = dat.color;
+                            $scope.detalle.prioridadN.idPrioridad = dat.idPrioridad;
                         } 
                     })
 

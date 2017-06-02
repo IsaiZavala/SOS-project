@@ -221,8 +221,8 @@ angular.module('buzon')
         //api.post("/buzon/sos", datoss)
         api.post("/Services/WebServiceAPI.asmx/buzonSOS", JSON.stringify({ 'data': datoss}))
         .then(function succ(res){
-                    scope.loadActivated = false;
-
+            scope.loadActivated = false;
+            // console.log("buzonSOS");
             // console.log(res.data);
             scope.arraySOS = res.data.d;
         }, function err(res){
@@ -237,12 +237,21 @@ angular.module('buzon')
         $("#modalStatus").modal();
        
     }
-    
-     scope.abreReasignar = function(idSOS)
+
+    scope.seleccionaEmpleado = function ()
     {
-         scope.idCoti = idSOS;
+        // console.log(scope.selectedEmpleado);
+    }
+    
+    scope.abreReasignar = function (idDetalleSOS)
+     {
+        scope.idCoti = idDetalleSOS;
+         // No es necesaria la siguiente linea, ya que se asigna el empleado seleccionado en el ddlEmpleado
+         // scope.selectedEmpleado.idEmpleado = idEmpleado;
+
+         // console.log("IdSOS: " + scope.idCoti);
+         // console.log("IdEmpleado: " + scope.selectedEmpleado.idEmpleado);
         $("#modalReasignar").modal();
-       
     }
      
      scope.confirmaStatus = function()
@@ -251,7 +260,7 @@ angular.module('buzon')
        //  console.log(scope.idCoti);
          
          var conf = alertas.confirma("¿Seguro de cambiar el estatus?", "Se cambiara el estado del SOS: " + scope.idCoti + " a: " + scope.selectedStatus.Nombre);
-         
+
            $mdDialog.show(conf).then(function () 
            {
                  var data = {
@@ -265,17 +274,16 @@ angular.module('buzon')
             },
             function () 
             {
-             //   console.log("adios");
+               // esta funcion es cuando no acepta cambiar el status
+               // console.log("adios");
             });
-
-       
-       
      }
      
      function cambiaStatus(data)
     {
           
-         api.post("/buzon/reasignaStatus", data)
+         //api.post("/buzon/reasignaStatus", data)
+         api.post("/Services/WebServiceAPI.asmx/reasignaStatus", JSON.stringify({ 'data': data }))
             .then(function succ(res){
          //   console.log(res.data);
                         if(data.estado != undefined)
@@ -291,7 +299,7 @@ angular.module('buzon')
         });
     }
      
-     scope.actualizaEmpleado = function(idDetalle)
+     scope.actualizaEmpleado = function()
      {
        //  console.log(scope.selectedEmpleado.idEmpleado);
        //  console.log(scope.idCoti);
@@ -300,8 +308,9 @@ angular.module('buzon')
              idDeta: scope.idCoti,
              idEmpleado: scope.selectedEmpleado.idEmpleado
          };
-         
-         api.post("/buzon/reasignaEmpleado", data)
+
+         //api.post("/buzon/reasignaEmpleado", data)
+         api.post("/Services/WebServiceAPI.asmx/reasignaEmpleado", JSON.stringify({ 'empleadoClass': data }))
           .then(function succ(res){
          //   console.log(res.data);
              alertas.aviso("Se reasigno el SOS a:" + scope.selectedEmpleado.nombreEmpleado);

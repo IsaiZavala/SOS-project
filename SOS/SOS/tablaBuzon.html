@@ -55,7 +55,7 @@
                                     
                                     <button ng-show="buzon.esAdmin()" type="button" ng-click="buzon.cerrarSOS(b.idSOS)" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Cerrar"> <span style="color:green" class="glyphicon glyphicon-ok"></span></button>
                                     <button  ng-show="buzon.esAdmin()"  type="button" ng-click="buzon.cancelarSOS(b.idSOS)" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Cancelar"> <span style="color:red"  class="glyphicon glyphicon-remove"></span></button>
-                                    <button  ng-show="buzon.esAdmin()"  type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Reasignar" ng-click="buzon.abreReasignar(b.idDetalleSOS)"> <span  class="glyphicon glyphicon-user"></span></button>
+                                    <button ng-show="buzon.esAdmin()"  type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Reasignar" ng-click="buzon.abreReasignar(b.idDetalleSOS)"> <span  class="glyphicon glyphicon-user"></span></button>
                                     <button  ng-show="buzon.esAdmin()"  type="button" class="btn btn-default" ng-click="buzon.abreStatus(b.idSOS)"> <span  class="glyphicon glyphicon-retweet"></span></button>
                                     <!----><button type="button" ng-click="buzon.verENCUESTA($event, b.idSOS)" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Encuesta de Satisfaccion"> <span class="glyphicon glyphicon-th-list"></span></button>
                                 </div>

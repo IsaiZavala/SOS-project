@@ -119,6 +119,9 @@ namespace SOS.Services
             public string fecha;
             public string idStatus;
 
+            // viene de buzon/verSOS
+            public string estado;
+
             public class informante
             {
                 public string celular;
@@ -531,6 +534,7 @@ namespace SOS.Services
 
             public string IdEstado;
             public string Nombre;
+            public string idEmpleado; // agregado para la funcionalidad de buzon
         }
 
         [WebMethod]
@@ -850,6 +854,93 @@ namespace SOS.Services
             }
 
             return lstOrdenTrabajo;
+        }
+
+        [WebMethod]
+        public SOSClass reasignaStatus(SOSClass data)
+        {
+            string strQuery = "UPDATE sos SET idStatus= @IdStatus WHERE idSOS = @IdSOS";
+            strQuery = strQuery.Replace("@IdStatus", data.idStatus)
+                                .Replace("@IdSOS", data.idSOS);
+
+            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+
+            return data;
+        }
+
+        public class ActualizaEmpleadoClass
+        {
+            public string idDeta;
+            public string idEmpleado;
+        }
+
+        [WebMethod]
+        public ActualizaEmpleadoClass reasignaEmpleado(ActualizaEmpleadoClass empleadoClass)
+        {
+            string strQuery = "UPDATE detallesos SET idEmpleado = @IdEmpleado WHERE idDetalleSOS = @IdDeta";
+            strQuery = strQuery.Replace("@IdEmpleado", empleadoClass.idEmpleado)
+                                .Replace("@IdDeta", empleadoClass.idDeta);
+
+            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+
+            return empleadoClass;
+        }
+
+        [WebMethod]
+        public void modSOS(SOSClass data)
+        {
+            string strQuery = @"UPDATE sos SET 
+                                    hraDispI1 = '@hraDispI1'
+                                    , hraDispI2 = '@hraDispI2'
+                                    , descripcion = '@descripcion'
+                                    , tel = @tel
+                                    , cel = @cel
+                                    , claveCadena = '@claveCadena' 
+                                    where idSOS = @idSOS";
+
+            strQuery = strQuery.Replace("@hraDispI1", data.hraDispI1);
+            strQuery = strQuery.Replace("@hraDispI2", data.hraDispI2);
+            strQuery = strQuery.Replace("@descripcion", data.descripcion);
+            strQuery = strQuery.Replace("@tel", data.tel);
+            strQuery = strQuery.Replace("@cel", data.cel);
+            strQuery = strQuery.Replace("@claveCadena", data.claveCadena);
+            strQuery = strQuery.Replace("@idSOS", data.idSOS);
+
+            Tools.DataSetHelper.ExecuteCommandNonQuery(strQuery);
+        }
+
+        public class OrdenServicioClass
+        {
+            public string idSOS;
+            public EmpleadoClass empleadoN;
+            public PrioridadClass prioridadN;
+            public RamoClass ramoN;
+            public TipoMantenimientoClass tipomatenimientoN;
+            public string comentario;
+        }
+
+        [WebMethod]
+        public int GuardaOrdenDeServicio(OrdenServicioClass data)
+        {
+            string strQuery = @"INSERT INTO detallesos 
+                (IdSOS, idPrioridad, idRamo, idTipoMant, idEmpleado, comentarios)
+                VALUES(@IdSOS, @idPrioridad, @idRamo, @idTipoMant, @idEmpleado, '@comentarios');
+                SELECT LAST_INSERT_ID();";
+
+            strQuery = strQuery.Replace("@IdSOS", data.idSOS);
+            strQuery = strQuery.Replace("@idPrioridad", data.prioridadN.idPrioridad);
+            strQuery = strQuery.Replace("@idRamo", data.ramoN.idRamo);
+            strQuery = strQuery.Replace("@idTipoMant", data.tipomatenimientoN.idTipoMant);
+            strQuery = strQuery.Replace("@idEmpleado", data.empleadoN.idEmpleado);
+            strQuery = strQuery.Replace("@comentarios", data.comentario);
+
+            object result = Tools.DataSetHelper.ExecuteScalar(strQuery);
+            if (result != null)
+            {
+                return int.Parse(result.ToString());
+            }
+
+            return -1;
         }
 
     }

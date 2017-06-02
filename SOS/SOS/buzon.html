@@ -136,7 +136,7 @@
         <h4 class="modal-title">Reasignar SOS a:</h4>
       </div>
       <div class="modal-body">
-        <select class="form-control" ng-model="buzon.selectedEmpleado" ng-options="item.nombreEmpleado for item in buzon.empleados" >
+        <select class="form-control" ng-model="buzon.selectedEmpleado" ng-change="buzon.seleccionaEmpleado()" ng-options="item.nombreEmpleado for item in buzon.empleados" >
             <option values="">---SELECCIONA EMPLEADO---</option>
         
           </select>
